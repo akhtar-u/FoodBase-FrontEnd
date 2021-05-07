@@ -1,20 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+  $font-family: 'inherit'
+);
+@include mat-core($custom-typography);
+
 
 html, body {
   height: 100%;
+
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Cairo, "Helvetica Neue", sans-serif;
 }
-
-mat-sidenav-container{
-  height: 100%;
-  padding: 16px;
-}
-
 .toolbar-spacer {
   flex: 1 1 auto;
+}
+
+mat-toolbar{
+  background-color: #551e1e !important;
+}
+
+.tb-title {
+  font-size: 1.5rem;
+  font-weight: lighter;
+}
+
+.example-card {
+  max-width: 350px;
+}
+
+mat-card{
+  background-color: #551e1e !important;
+}
+
+.main-content{
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: #343434;
+}
+
+.mat-card-header {
+  justify-content: center;
+}
+
+mat-card-actions {
+  margin-top: -25px;
+  text-align: center;
+}
+
+mat-card-actions > button {
+  padding-left: 2rem;
+}
+
+.footer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.footer-icon {
+  font-size: 1rem;
 }
