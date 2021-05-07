@@ -12,5 +12,9 @@ body {
 
 mat-sidenav-container{
   height: 100%;
-  padding: 0 16px;
+  padding: 16px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
 }
