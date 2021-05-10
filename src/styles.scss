@@ -10,7 +10,6 @@ $custom-typography: mat-typography-config(
 
 html, body {
   height: 100%;
-
 }
 
 body {
@@ -22,7 +21,7 @@ body {
 }
 
 mat-toolbar{
-  background-color: #551e1e !important;
+  background-color: #162447 !important;
 }
 
 .tb-title {
@@ -35,12 +34,11 @@ mat-toolbar{
 }
 
 mat-card{
-  background-color: #551e1e !important;
+  background-color: #1f4068 !important;
 }
 
 .main-content{
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 16px;
   background-color: #343434;
 }
 
