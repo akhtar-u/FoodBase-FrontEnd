@@ -1,0 +1,23 @@
+.login-container{
+  background-color: #343434;
+  display: flex;
+  height: 86.4vh;
+  color: white;
+  justify-content: center;
+  text-align: center;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  font-size: 1rem;
+}
+
+.mat-display-2{
+  margin-bottom: 2rem !important;
+}
+
+mat-label{
+  width: 100%;
+}

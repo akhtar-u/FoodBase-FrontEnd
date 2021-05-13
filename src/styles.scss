@@ -7,10 +7,6 @@ $custom-typography: mat-typography-config(
 );
 @include mat-core($custom-typography);
 
-
-html, body {
-}
-
 body {
   margin: 0;
   font-family: Cairo, "Helvetica Neue", sans-serif;
@@ -22,4 +18,8 @@ body {
 
 mat-toolbar {
   background-color: #162447 !important;
+}
+
+.mat-tooltip {
+  font-size: 1rem;
 }

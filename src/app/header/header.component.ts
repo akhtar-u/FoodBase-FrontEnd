@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router, NavigationStart} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  loginRoute = false;
 
-  ngOnInit(): void {
+  constructor(private router: Router) {
   }
 
+  ngOnInit(): void {
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationStart) {
+        if (e.url === '/login') {
+          this.loginRoute = true;
+        }
+        else{
+          this.loginRoute = false;
+        }
+      }
+    });
+  }
 }

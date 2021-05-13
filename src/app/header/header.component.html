@@ -2,7 +2,18 @@
   <mat-icon>local_dining</mat-icon>
   <span class="tb-title">FoodBase</span>
   <span class="toolbar-spacer"></span>
-  <button mat-icon-button matTooltip="Log In">
-    <mat-icon>login</mat-icon>
+  <a routerLink="/">
+  <button *ngIf="loginRoute" mat-icon-button matTooltip="Home">
+    <mat-icon>home</mat-icon>
   </button>
+  </a>
+  <a routerLink="/login">
+    <button *ngIf="!loginRoute" mat-icon-button matTooltip="Sign In">
+      <mat-icon>login</mat-icon>
+    </button>
+  </a>
+  <button *ngIf="loginRoute" mat-icon-button matTooltip="Sign Out">
+    <mat-icon>logout</mat-icon>
+  </button>
+
 </mat-toolbar>

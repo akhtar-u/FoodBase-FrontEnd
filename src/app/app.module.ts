@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -10,6 +11,7 @@ import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {CardsComponent} from './cards/cards.component';
 import {SearchFabComponent} from './search-fab/search-fab.component';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import {SearchFabComponent} from './search-fab/search-fab.component';
     HeaderComponent,
     CardsComponent,
     SearchFabComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
