@@ -20,7 +20,8 @@ const MaterialComponents = [
   MatGridListModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatDialogModule
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@ import {HeaderComponent} from './header/header.component';
 import {CardsComponent} from './cards/cards.component';
 import {SearchFabComponent} from './search-fab/search-fab.component';
 import {LoginComponent} from './login/login.component';
+import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {LoginComponent} from './login/login.component';
     CardsComponent,
     SearchFabComponent,
     LoginComponent,
+    ViewRecipeComponent,
   ],
   imports: [
     BrowserModule,
