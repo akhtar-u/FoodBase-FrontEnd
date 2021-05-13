@@ -9,7 +9,6 @@ $custom-typography: mat-typography-config(
 
 
 html, body {
-  height: 100%;
 }
 
 body {
@@ -22,45 +21,4 @@ body {
 
 mat-toolbar{
   background-color: #162447 !important;
-}
-
-.tb-title {
-  font-size: 1.5rem;
-  font-weight: lighter;
-}
-
-.example-card {
-  max-width: 350px;
-}
-
-mat-card{
-  background-color: #1f4068 !important;
-}
-
-.main-content{
-  padding: 16px;
-  background-color: #343434;
-}
-
-.mat-card-header {
-  justify-content: center;
-}
-
-mat-card-actions {
-  margin-top: -25px;
-  text-align: center;
-}
-
-mat-card-actions > button {
-  padding-left: 2rem;
-}
-
-.footer {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-}
-
-.footer-icon {
-  font-size: 1rem;
 }

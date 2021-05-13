@@ -1,0 +1,27 @@
+
+.example-card {
+  max-width: 350px;
+}
+
+mat-card{
+  background-color: #1f4068 !important;
+}
+
+.main-content{
+  min-height: 84vh;
+  padding: 16px;
+  background-color: #343434;
+}
+
+.mat-card-header {
+  justify-content: center;
+}
+
+mat-card-actions {
+  margin-top: -25px;
+  text-align: center;
+}
+
+mat-card-actions > button {
+  padding-left: 2rem;
+}
