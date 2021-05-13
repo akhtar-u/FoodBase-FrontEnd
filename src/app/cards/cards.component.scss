@@ -3,11 +3,19 @@
   max-width: 350px;
 }
 
-mat-card{
+mat-card {
   background-color: #1f4068 !important;
 }
 
-.main-content{
+mat-card:hover{
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+mat-grid-tile:hover {
+
+}
+
+.main-content {
   min-height: 84vh;
   padding: 16px;
   background-color: #343434;
@@ -22,6 +30,6 @@ mat-card-actions {
   text-align: center;
 }
 
-mat-card-actions > button {
-  padding-left: 2rem;
+#fav-btn{
+  display: none;
 }
