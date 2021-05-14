@@ -25,6 +25,7 @@ import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
     LoginComponent,
     ViewRecipeComponent,
   ],
+  entryComponents: [ViewRecipeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

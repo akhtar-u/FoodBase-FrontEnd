@@ -4,13 +4,12 @@
   height: 86.4vh;
   color: white;
   justify-content: center;
-  text-align: center;
 }
 
 .login-form{
   display: flex;
   flex-direction: column;
-  margin-top: 5rem;
+  margin-top: 1rem;
   font-size: 1rem;
 }
 
@@ -18,6 +17,22 @@
   margin-bottom: 2rem !important;
 }
 
-mat-label{
-  width: 100%;
+::ng-deep.mat-tab-list,  ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-labels, ::ng-deep.mat-tab-label-active{
+  min-width: 150px !important;
+  font-size: 1.25rem !important;
+}
+
+mat-tab-group{
+  margin-top: 2rem;
+
+}
+
+.login-btns{
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-btns > button{
+  color: white !important;
+  font-size: 1rem;
 }
