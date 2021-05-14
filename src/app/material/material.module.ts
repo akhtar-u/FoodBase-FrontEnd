@@ -10,6 +10,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -23,7 +24,8 @@ const MaterialComponents = [
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule,
-  MatTabsModule
+  MatTabsModule,
+  MatSnackBarModule
 ];
 
 @NgModule({

@@ -16,11 +16,13 @@
           </button>
         </mat-form-field>
         <div>
+
           <p>Forgot password?</p>
           <div class="login-btns">
-            <button mat-stroked-button> Reset</button>
+            <button (click)="openSnackBar()" mat-stroked-button> Reset</button>
             <button mat-stroked-button> Sign In</button>
           </div>
+
         </div>
       </div>
     </mat-tab>
