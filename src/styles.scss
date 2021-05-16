@@ -28,8 +28,15 @@ a, a:visited{
   color: white;
 }
 
-
 .reset-bar{
   color: black;
   background-color: #b0bec5 !important;
+}
+
+.main-content-div{
+  background-color: #343434;
+  display: flex;
+  height: 86.4vh;
+  color: white;
+  justify-content: center;
 }

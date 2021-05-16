@@ -1,0 +1,31 @@
+::ng-deep.mat-tab-list,  ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-labels, ::ng-deep.mat-tab-label-active{
+  font-size: 1.5rem !important;
+}
+
+.db-div{
+  display: flex;
+  flex-direction: column;
+  background-color: #343434;
+  color: white;
+  height: 86.4vh;
+}
+
+#db-greeting{
+  font-size: 1.3rem;
+  margin: 1rem 1rem 0 1rem;
+}
+
+#db-tabs{
+  margin: 0 1rem 0 1rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#test{
+  max-width: 800px;
+}
+
+mat-tab-group{
+  width: 100%;
+}
