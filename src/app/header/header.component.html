@@ -2,10 +2,10 @@
   <mat-icon>local_dining</mat-icon>
   <span class="tb-title">FoodBase</span>
   <span class="toolbar-spacer"></span>
-  <a routerLink="/">
-  <button *ngIf="loginRoute" mat-icon-button matTooltip="Home">
-    <mat-icon>home</mat-icon>
-  </button>
+  <a routerLink="">
+    <button *ngIf="!browseRoute" mat-icon-button matTooltip="Browse">
+      <mat-icon>feed</mat-icon>
+    </button>
   </a>
   <a routerLink="/login">
     <button *ngIf="!loginRoute" mat-icon-button matTooltip="Sign In">

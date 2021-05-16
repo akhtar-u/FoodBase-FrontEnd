@@ -9,6 +9,7 @@ import {Router, NavigationStart} from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   loginRoute = false;
+  browseRoute = false;
 
   constructor(private router: Router) {
   }
@@ -16,12 +17,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationStart) {
-        if (e.url === '/login') {
-          this.loginRoute = true;
-        }
-        else{
-          this.loginRoute = false;
-        }
+        this.loginRoute = e.url === '/login';
+        this.browseRoute = e.url === '/';
       }
     });
   }
