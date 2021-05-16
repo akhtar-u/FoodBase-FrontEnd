@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 
 @Component({
@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
 
   public email: FormControl = new FormControl('', [Validators.required,
     Validators.pattern(this.emailRegexPattern)]);
+  public password: FormControl = new FormControl('', Validators.required);
+
 
   constructor(private snackBar: MatSnackBar) {
   }
@@ -24,12 +26,35 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getErrorMessage(): string {
+  getEmailErrorMessage(): string {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
 
     return this.email.errors ? 'Not a valid email' : '';
+  }
+
+  getPassErrorMessag(): string {
+    if (this.password.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return '';
+  }
+
+  signIn(): void{
+    if (this.password.invalid || this.email.invalid){
+      this.snackBar.open('You must enter both a valid email and password!', 'Close', {
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+        duration: 3000,
+        panelClass: 'reset-bar'
+      });
+    }
+    else{
+      console.log('Sending sign in request...');
+    }
+
   }
 
   openSnackBar(): void {
