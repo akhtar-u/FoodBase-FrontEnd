@@ -2,13 +2,13 @@
   <mat-tab-group color="accent">
     <mat-tab label="Sign In">
       <div class="login-form">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" color="accent">
           <mat-label>Enter your email</mat-label>
           <input matInput placeholder="pat@example.com" [formControl]="email" required>
           <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" color="accent">
           <mat-label>Enter your password</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
           <mat-error *ngIf="password.invalid">{{getPassErrorMessag()}}</mat-error>
@@ -30,7 +30,55 @@
     </mat-tab>
 
 
-    <mat-tab label="Register"></mat-tab>
+    <mat-tab label="Register">
+      <div class="login-form">
+        <mat-form-field appearance="fill" color="accent">
+          <mat-label>Enter username</mat-label>
+          <input matInput placeholder="username" required>
+          <mat-error></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" color="accent">
+          <mat-label>Enter your email</mat-label>
+          <input matInput placeholder="pat@example.com" [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" color="accent">
+          <mat-label>Confirm your email</mat-label>
+          <input matInput placeholder="pat@example.com" [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" color="accent">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+          <mat-error *ngIf="password.invalid">{{getPassErrorMessag()}}</mat-error>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" color="accent">
+          <mat-label>Confirm your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+          <mat-error *ngIf="password.invalid">{{getPassErrorMessag()}}</mat-error>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <div>
+
+          <div class="login-btns register-btns">
+            <button mat-stroked-button> Register </button>
+          </div>
+
+        </div>
+      </div>
+    </mat-tab>
+
   </mat-tab-group>
 
 </div>

@@ -23,7 +23,15 @@ mat-tab-group{
   justify-content: space-between;
 }
 
+.register-btns{
+  justify-content: center;
+}
+
 .login-btns > button{
   color: white !important;
   font-size: 1rem;
+}
+
+button{
+  border-color: #b0bec5 !important;
 }
