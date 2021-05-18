@@ -14,6 +14,7 @@ import {SearchFabComponent} from './search-fab/search-fab.component';
 import {LoginComponent} from './login/login.component';
 import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent,
     ViewRecipeComponent,
     DashboardComponent,
+    AddRecipeComponent,
   ],
   entryComponents: [ViewRecipeComponent],
   imports: [
