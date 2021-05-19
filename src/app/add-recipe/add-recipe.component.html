@@ -38,16 +38,22 @@
         </mat-form-field>
       </form>
     </mat-step>
+    <mat-step [stepControl]="fifthFormGroup" errorMessage="Make recipe public?">
+      <form [formGroup]="fifthFormGroup">
+        <ng-template matStepLabel>Choose recipe visibility option</ng-template>
+        <mat-button-toggle-group formControlName="fifthCtrl" name="recipe-visibility">
+          <mat-button-toggle value="private">Private</mat-button-toggle>
+          <mat-button-toggle value="public">Public</mat-button-toggle>
+        </mat-button-toggle-group>
+      </form>
+    </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button id="submit-btn" color="accent" mat-raised-button>Submit recipe</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>
-
 
 
 </div>

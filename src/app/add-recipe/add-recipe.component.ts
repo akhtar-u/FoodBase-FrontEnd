@@ -14,6 +14,9 @@ export class AddRecipeComponent implements OnInit {
 
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
+  thirdFormGroup!: FormGroup;
+  fourthFormGroup!: FormGroup;
+  fifthFormGroup!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
   }
@@ -24,6 +27,9 @@ export class AddRecipeComponent implements OnInit {
     });
     this.secondFormGroup = this.formBuilder.group({
       secondCtrl: ['', Validators.required]
+    });
+    this.fifthFormGroup = this.formBuilder.group({
+      fifthCtrl: ['', Validators.required]
     });
   }
 
