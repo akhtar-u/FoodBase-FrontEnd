@@ -13,6 +13,10 @@ h2 {
   margin-bottom: 0;
 }
 
-.mat-button-toggle {
+.mat-slide-toggle {
   border-radius: 100% !important;
+}
+
+::ng-deep.mat-slide-toggle-content{
+  display: flex !important;
 }
