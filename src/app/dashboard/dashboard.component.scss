@@ -1,28 +1,14 @@
-::ng-deep.mat-tab-list, ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-labels, ::ng-deep.mat-tab-label-active {
-  font-size: 1.5rem !important;
-}
-
 .db-div {
   display: flex;
   flex-direction: column;
   background-color: #343434;
   color: white;
   height: 86.4vh;
-}
-
-#db-tabs {
-  margin: 0 1rem 0 1rem;
-  display: flex;
-  justify-content: center;
   text-align: center;
 }
 
-#test {
-  max-width: 800px;
-}
-
-mat-tab-group {
-  width: 100%;
+h1 {
+  margin-top: 1rem;
 }
 
 .add-recipe-btn {

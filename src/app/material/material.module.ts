@@ -13,6 +13,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -29,7 +32,10 @@ const MaterialComponents = [
   MatTabsModule,
   MatSnackBarModule,
   MatChipsModule,
-  MatStepperModule
+  MatStepperModule,
+  MatPaginatorModule,
+  MatDividerModule,
+  MatButtonToggleModule
 ];
 
 @NgModule({
