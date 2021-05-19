@@ -1,31 +1,41 @@
 <div class="add-recipe-div">
-  <mat-vertical-stepper color="accent" linear #stepper>
-    <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+  <mat-vertical-stepper color="accent" #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Recipe name is required.">
       <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
+        <ng-template matStepLabel>Enter recipe name</ng-template>
         <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+          <mat-label>Recipe name</mat-label>
+          <input matInput placeholder="name" formControlName="firstCtrl" required>
         </mat-form-field>
-        <div>
-          <p>Go to a different step to see the error state</p>
-          <button mat-button matStepperNext>Next</button>
-        </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Minimum one ingredient is required">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Enter recipe ingredients</ng-template>
         <mat-form-field>
-          <mat-label>Address</mat-label>
+          <mat-label>Recipe name</mat-label>
+          <input matInput placeholder="1 cup water" formControlName="firstCtrl" required>
+        </mat-form-field>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Recipe instructions required">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Enter recipe instructions</ng-template>
+        <mat-form-field>
+          <mat-label>Instruction</mat-label>
+          <input matInput placeholder="Mix ingredients..." formControlName="secondCtrl"
+                 required>
+        </mat-form-field>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Recipe image is required">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Add recipe image</ng-template>
+        <mat-form-field>
+          <mat-label>Upload Image</mat-label>
           <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
                  required>
         </mat-form-field>
-        <div>
-          <p>Go to a different step to see the error state</p>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
       </form>
     </mat-step>
     <mat-step>
@@ -37,6 +47,7 @@
       </div>
     </mat-step>
   </mat-vertical-stepper>
+
 
 
 </div>

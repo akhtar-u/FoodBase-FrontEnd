@@ -2,12 +2,10 @@
   background-color: #343434;
   color: white;
   height: 86.4vh;
+  font-size: 1rem !important;
 }
 
-.mat-stepper-vertical {
-  margin-top: 8px;
-}
-
-.mat-form-field {
-  margin-top: 16px;
+::ng-deep.mat-step-text-label{
+  font-size: 1.25rem !important;
+  padding-bottom: 10px !important;
 }
