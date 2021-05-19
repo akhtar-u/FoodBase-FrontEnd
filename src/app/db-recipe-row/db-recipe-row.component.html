@@ -1,6 +1,6 @@
 <div class="row">
   <h2>Recipe Name</h2>
-  <button mat-icon-button matTooltip="View recipe">
+  <button mat-icon-button matTooltip="View recipe" (click)="openDialog()">
     <mat-icon>assignment</mat-icon>
   </button>
 
@@ -12,11 +12,9 @@
     <mat-icon> delete</mat-icon>
   </button>
 
-  <mat-slide-toggle matTooltip="Make recipe public?">
-    <mat-icon>
-      public
-    </mat-icon>
-  </mat-slide-toggle>
+
+  <mat-icon matTooltip="Private recipe"> public_off </mat-icon>
+
 
 </div>
 <mat-divider></mat-divider>
