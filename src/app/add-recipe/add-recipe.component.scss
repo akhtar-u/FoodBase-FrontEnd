@@ -10,8 +10,13 @@
   overflow-y: auto;
   align-items: center;
   flex-direction: column;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
+.add-recipe-div::-webkit-scrollbar {
+  display: none;
+}
 mat-vertical-stepper {
   margin-top: 1rem;
 }
