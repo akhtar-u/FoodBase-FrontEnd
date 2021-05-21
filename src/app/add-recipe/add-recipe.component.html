@@ -9,35 +9,85 @@
         </mat-form-field>
       </form>
     </mat-step>
-    <mat-step [stepControl]="firstFormGroup" errorMessage="Minimum one ingredient is required">
-      <form [formGroup]="firstFormGroup">
+    <mat-step [stepControl]="ingredientsFormGroup" errorMessage="Minimum one ingredient is required">
+      <form [formGroup]="ingredientsFormGroup">
         <ng-template matStepLabel>Enter recipe ingredients</ng-template>
         <mat-form-field>
-          <mat-label>Recipe name</mat-label>
-          <input matInput placeholder="1 cup water" formControlName="firstCtrl" required>
+          <mat-label>Ingredient</mat-label>
+          <input matInput placeholder="1 cup water" formControlName="ingredientsCtrl" required>
         </mat-form-field>
+        <div formArrayName="ingredients">
+          <div *ngFor="let ingredient of ingredients; let i = index;" [formGroupName]="i">
+            <mat-form-field>
+              <mat-label>Ingredient</mat-label>
+              <input matInput placeholder="1 cup water">
+            </mat-form-field>
+            <button (click)="removeIngredient(i)" mat-icon-button matTooltip="Remove ingredient">
+              <mat-icon>
+                remove
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <button (click)="addIngredient()" mat-icon-button matTooltip="Add ingredient">
+            <mat-icon>
+              add
+            </mat-icon>
+          </button>
+        </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" errorMessage="Recipe instructions required">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Enter recipe instructions</ng-template>
+    <mat-step [stepControl]="instructionsFormGroup" errorMessage="Minimum one instruction is required">
+      <form [formGroup]="instructionsFormGroup">
+        <ng-template matStepLabel>Enter recipe instruction</ng-template>
         <mat-form-field>
           <mat-label>Instruction</mat-label>
-          <input matInput placeholder="Mix ingredients..." formControlName="secondCtrl"
-                 required>
+          <input matInput placeholder="Mix flour and water..." formControlName="instructionsCtrl" required>
         </mat-form-field>
+        <div formArrayName="instructions">
+          <div *ngFor="let instruction of instructions; let i = index;" [formGroupName]="i">
+            <mat-form-field>
+              <mat-label>Instruction</mat-label>
+              <input matInput placeholder="Mix flour and water...">
+            </mat-form-field>
+            <button (click)="removeInstruction(i)" mat-icon-button matTooltip="Remove instruction">
+              <mat-icon>
+                remove
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <button (click)="addInstruction()" mat-icon-button matTooltip="Add instruction">
+            <mat-icon>
+              add
+            </mat-icon>
+          </button>
+        </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" errorMessage="Recipe image is required">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Add recipe image</ng-template>
+        <div>
+          <button mat-icon-button>
+            <mat-icon>
+              link
+            </mat-icon>
+          </button>
+        </div>
         <mat-form-field>
-          <mat-label>Upload Image</mat-label>
-          <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
+          <mat-label>Link Image</mat-label>
+          <input matInput placeholder="https://www.gstatic.com/webp/gallery/1.webp" formControlName="secondCtrl"
                  required>
         </mat-form-field>
       </form>
     </mat-step>
+
+
     <mat-step [stepControl]="fifthFormGroup" errorMessage="Make recipe public?">
       <form [formGroup]="fifthFormGroup">
         <ng-template matStepLabel>Choose recipe visibility option</ng-template>
