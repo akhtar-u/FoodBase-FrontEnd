@@ -1,4 +1,4 @@
-import {Directive, Input, OnDestroy, OnInit} from '@angular/core';
+import {Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {MatGridList} from '@angular/material/grid-list';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 

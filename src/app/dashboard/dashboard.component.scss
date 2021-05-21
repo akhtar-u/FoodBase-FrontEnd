@@ -3,8 +3,12 @@
   flex-direction: column;
   background-color: #343434;
   color: white;
-  min-height: 100vh;
+  position: absolute;
+  top: 60px;
+  bottom:60px;
+  width:100%;
   text-align: center;
+  overflow-y: auto;
 }
 
 h1 {
