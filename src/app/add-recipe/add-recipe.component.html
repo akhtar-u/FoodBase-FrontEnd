@@ -9,6 +9,7 @@
         </mat-form-field>
       </form>
     </mat-step>
+
     <mat-step [stepControl]="ingredientsFormGroup" errorMessage="Minimum one ingredient is required">
       <form [formGroup]="ingredientsFormGroup">
         <ng-template matStepLabel>Enter recipe ingredients</ng-template>
@@ -39,6 +40,7 @@
         </div>
       </form>
     </mat-step>
+
     <mat-step [stepControl]="instructionsFormGroup" errorMessage="Minimum one instruction is required">
       <form [formGroup]="instructionsFormGroup">
         <ng-template matStepLabel>Enter recipe instruction</ng-template>
@@ -69,24 +71,28 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" errorMessage="Recipe image is required">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Add recipe image</ng-template>
-        <div>
-          <button mat-icon-button>
-            <mat-icon>
-              link
-            </mat-icon>
-          </button>
-        </div>
+
+    <mat-step [stepControl]="imageFormGroup" errorMessage="Recipe image is required">
+      <form [formGroup]="imageFormGroup">
+        <ng-template matStepLabel>Link or upload recipe image</ng-template>
+
         <mat-form-field>
-          <mat-label>Link Image</mat-label>
-          <input matInput placeholder="https://www.gstatic.com/webp/gallery/1.webp" formControlName="secondCtrl"
-                 required>
+          <mat-label>URL to image</mat-label>
+          <input (change)="showPreview($event)" matInput type="url" placeholder="https://www.gstatic.com/webp/gallery/1.webp"
+                 formControlName="imageCtrl">
         </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput [(ngModel)]="fileAttr" [ngModelOptions]="{standalone: true}" readonly name="name"/>
+          <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile"
+                formControlName="imageCtrl" accept="image/*"/>
+        </mat-form-field>
+
+        <div>
+          <img id='preview-img' src="{{dataImage}}">
+        </div>
       </form>
     </mat-step>
-
 
     <mat-step [stepControl]="fifthFormGroup" errorMessage="Make recipe public?">
       <form [formGroup]="fifthFormGroup">
@@ -100,10 +106,12 @@
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
       <div>
-        <button id="submit-btn" color="accent" mat-raised-button>Submit recipe</button>
+        <button (click)="addRecipe()" id="submit-btn" color="accent" mat-icon-button matTooltip="Submit recipe">
+          <mat-icon>
+            done
+          </mat-icon>
+        </button>
       </div>
     </mat-step>
   </mat-vertical-stepper>
-
-
 </div>

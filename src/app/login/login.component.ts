@@ -44,21 +44,15 @@ export class LoginComponent implements OnInit {
 
   signIn(): void{
     if (this.password.invalid || this.email.invalid){
-      this.snackBar.open('You must enter both a valid email and password!', 'Close', {
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition,
-        duration: 3000,
-        panelClass: 'reset-bar'
-      });
+      this.openSnackBar('You must enter both a valid email and password!');
     }
     else{
       console.log('Sending sign in request...');
     }
-
   }
 
-  openSnackBar(): void {
-    this.snackBar.open('Your password has been reset!', 'Close', {
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: 3000,
