@@ -16,6 +16,7 @@ import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { DbRecipeRowComponent } from './db-recipe-row/db-recipe-row.component';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DbRecipeRowComponent } from './db-recipe-row/db-recipe-row.component';
     DashboardComponent,
     AddRecipeComponent,
     DbRecipeRowComponent,
+    EditRecipeComponent,
   ],
   entryComponents: [ViewRecipeComponent],
     imports: [
