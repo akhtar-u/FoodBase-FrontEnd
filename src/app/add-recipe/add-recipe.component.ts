@@ -26,6 +26,7 @@ export class AddRecipeComponent implements OnInit {
   ingredientsFormGroup!: FormGroup;
   instructionsFormGroup!: FormGroup;
   fifthFormGroup!: FormGroup;
+  imageToggleVal!: string;
 
   constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
     this.dataImage = null;
@@ -53,6 +54,8 @@ export class AddRecipeComponent implements OnInit {
       instructionsCtrl: ['', Validators.required],
       instructions: this.formBuilder.array([])
     });
+
+
   }
 
   addIngredient(): void {
@@ -132,4 +135,7 @@ export class AddRecipeComponent implements OnInit {
     });
   }
 
+  onValChange(value: any): void {
+    this.imageToggleVal = value;
+  }
 }

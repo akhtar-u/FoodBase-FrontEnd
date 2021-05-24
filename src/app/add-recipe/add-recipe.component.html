@@ -76,17 +76,25 @@
       <form [formGroup]="imageFormGroup">
         <ng-template matStepLabel>Link or upload recipe image</ng-template>
 
-        <mat-form-field>
-          <mat-label>URL to image</mat-label>
-          <input (change)="showPreview($event)" matInput type="url" placeholder="https://www.gstatic.com/webp/gallery/1.webp"
-                 formControlName="imageCtrl">
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-          <input matInput [(ngModel)]="fileAttr" [ngModelOptions]="{standalone: true}" readonly name="name"/>
-          <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile"
-                formControlName="imageCtrl" accept="image/*"/>
-        </mat-form-field>
+        <mat-button-toggle-group (change)="onValChange($event.value)">
+          <mat-button-toggle value="link">Link</mat-button-toggle>
+          <mat-button-toggle value="upload">Upload</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <div>
+          <mat-form-field *ngIf="imageToggleVal == 'link'">
+            <mat-label>URL to image</mat-label>
+            <input (change)="showPreview($event)" matInput type="url"
+                   placeholder="https://www.gstatic.com/webp/gallery/1.webp"
+                   formControlName="imageCtrl">
+          </mat-form-field>
+          <br>
+          <mat-form-field *ngIf="imageToggleVal == 'upload'">
+            <input matInput [(ngModel)]="fileAttr" [ngModelOptions]="{standalone: true}" readonly name="name"/>
+            <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile"
+                   formControlName="imageCtrl" accept="image/*"/>
+          </mat-form-field>
+        </div>
 
         <div>
           <img id='preview-img' src="{{dataImage}}">
