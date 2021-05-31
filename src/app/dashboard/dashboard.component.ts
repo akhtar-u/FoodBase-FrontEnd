@@ -25,5 +25,6 @@ export class DashboardComponent implements OnInit {
 
   deleteRecipe(recipe: Recipe): void {
     this.recipes = this.recipes.filter(r => r !== recipe);
+    this.recipeService.deleteRecipe(recipe.recipeID).subscribe();
   }
 }

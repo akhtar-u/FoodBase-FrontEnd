@@ -13,6 +13,10 @@ export class RecipeService {
   private recipesURL = 'http://localhost:8080/database';
   private username = 'Mark';
 
+  private httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
+
   constructor(private http: HttpClient) {
   }
 
@@ -30,6 +34,14 @@ export class RecipeService {
         tap(_ => this.log('fetched recipes for user')),
         catchError(this.handleError<Recipe[]>('getRecipesByUsername', []))
       );
+  }
+
+
+  deleteRecipe(recipeID: string): Observable<Recipe> {
+    return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID, this.httpOptions).pipe(
+      tap(_ => this.log('deleted recipe with id: ' + recipeID)),
+      catchError(this.handleError<Recipe>('deleteRecipe'))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T): (error: any) => Observable<T> {
