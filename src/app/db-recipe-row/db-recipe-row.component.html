@@ -1,22 +1,31 @@
 <div class="row">
-  <h2>{{recipeName}}</h2>
-  <button mat-icon-button matTooltip="View recipe" (click)="openDialog()">
-    <mat-icon>assignment</mat-icon>
-  </button>
+  <div class="item">
+    <h2>bread</h2>
+  </div>
 
-  <a routerLink="/editrecipe">
-    <button mat-icon-button matTooltip="Edit recipe">
-      <mat-icon> edit</mat-icon>
+  <div class="item">
+    <button mat-icon-button matTooltip="View recipe" (click)="openDialog()">
+      <mat-icon>assignment</mat-icon>
     </button>
-  </a>
+  </div>
 
-  <button mat-icon-button matTooltip="Delete recipe">
-    <mat-icon> delete</mat-icon>
-  </button>
+  <div class="item">
+    <a routerLink="/editrecipe">
+      <button mat-icon-button matTooltip="Edit recipe">
+        <mat-icon> edit</mat-icon>
+      </button>
+    </a>
+  </div>
 
+  <div class="item">
+    <button mat-icon-button matTooltip="Delete recipe">
+      <mat-icon> delete</mat-icon>
+    </button>
+  </div>
 
-  <mat-icon matTooltip="Private recipe"> public_off</mat-icon>
-
+  <div class="item">
+    <mat-icon matTooltip="Private recipe"> public_off</mat-icon>
+  </div>
 
 </div>
 <mat-divider></mat-divider>
