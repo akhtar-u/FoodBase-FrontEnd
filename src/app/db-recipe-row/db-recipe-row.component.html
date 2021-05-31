@@ -1,6 +1,6 @@
 <div class="row">
   <div class="item">
-    <h2>{{recipeName}}</h2>
+    <h2>{{recipe.recipeName}}</h2>
   </div>
 
   <div class="item">
@@ -18,7 +18,7 @@
   </div>
 
   <div class="item">
-    <button mat-icon-button matTooltip="Delete recipe">
+    <button mat-icon-button matTooltip="Delete recipe" (click)="deleteRecipe()">
       <mat-icon> delete</mat-icon>
     </button>
   </div>
