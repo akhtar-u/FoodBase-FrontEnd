@@ -23,5 +23,4 @@ export class ViewRecipeComponent implements OnInit {
     this.instructions = this.data.recipe.recipeInstructions;
     this.imageURL = this.data.recipe.imageURL;
   }
-
 }

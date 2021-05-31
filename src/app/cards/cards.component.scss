@@ -1,5 +1,5 @@
-.example-card {
-  max-width: 315px;
+.card {
+  width: 315px;
 }
 
 mat-card {
@@ -41,4 +41,9 @@ mat-card-actions {
 
 mat-grid-list{
   overflow: auto !important;
+}
+
+mat-card img{
+  object-fit: cover;
+  height: 250px;
 }
