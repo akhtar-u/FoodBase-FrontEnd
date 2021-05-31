@@ -25,19 +25,23 @@ export class DbRecipeRowComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.dialog.open(ViewRecipeComponent);
+    this.dialog.open(ViewRecipeComponent, {
+      minWidth: '300px',
+      data: {
+        recipe: this.recipe
+      }
+    });
   }
 
   deleteRecipe(): void {
     this.deleteThis.emit(this.recipe);
   }
 
-  checkRecipeVisibility(): void{
-    if(this.recipe.recipePublic){
+  checkRecipeVisibility(): void {
+    if (this.recipe.recipePublic) {
       this.icon = 'public';
       this.tooltip = 'Public';
-    }
-    else{
+    } else {
       this.icon = 'public_off';
       this.tooltip = 'Private';
     }

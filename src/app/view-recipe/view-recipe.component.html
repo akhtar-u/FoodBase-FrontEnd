@@ -1,32 +1,22 @@
 <div>
-  <p>username</p>
-  <h1 mat-dialog-title>Food Name</h1>
+  <h1 mat-dialog-title>{{recipeName}}</h1>
+  <p class="username">By: {{username}}</p>
 </div>
 
 <mat-dialog-content class="mat-typography">
   <h2>Ingredients: </h2>
   <mat-chip-list>
-    <mat-chip color="accent">One fish</mat-chip>
-    <mat-chip color="accent">Two fish</mat-chip>
-    <mat-chip color="accent">Primary fish</mat-chip>
-    <mat-chip color="accent">Accent fish</mat-chip>
+    <mat-chip color="accent"*ngFor="let ingredient of ingredients">{{ingredient}}</mat-chip>
   </mat-chip-list>
   <br>
   <h2>Directions: </h2>
-  <ol>
-    <li><p>Learn one way to build applications with Angular and reuse your code and abilities to build
-      apps for any deployment target. For web, mobile web, native mobile and native desktop.</p></li>
-    <li><p>Learn one way to build applications with Angular and reuse your code and abilities to build
-      apps for any deployment target. For web, mobile web, native mobile and native desktop.</p></li>
-    <li><p>Learn one way to build applications with Angular and reuse your code and abilities to build
-      apps for any deployment target. For web, mobile web, native mobile and native desktop.</p></li>
-    <li><p>Learn one way to build applications with Angular and reuse your code and abilities to build
-      apps for any deployment target. For web, mobile web, native mobile and native desktop.</p></li>
+  <ol >
+    <li *ngFor="let instruction of instructions"><p>{{instruction}}</p></li>
   </ol>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <a href="https://www.gstatic.com/webp/gallery/1.webp" target="_blank">
+  <a href="{{imageURL}}" target="_blank">
     <button mat-icon-button matTooltip="View image">
       <mat-icon>image</mat-icon>
     </button>
