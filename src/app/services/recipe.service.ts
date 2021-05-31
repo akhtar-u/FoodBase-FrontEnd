@@ -11,16 +11,24 @@ import {Recipe} from '../models/recipe';
 export class RecipeService {
 
   private recipesURL = 'http://localhost:8080/database';
+  private username = 'Mark';
 
   constructor(private http: HttpClient) {
   }
 
-  /** GET heroes from the server */
   getRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.recipesURL + '/public')
       .pipe(
         tap(_ => this.log('fetched recipes')),
         catchError(this.handleError<Recipe[]>('getRecipes', []))
+      );
+  }
+
+  getRecipesByUsername(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + this.username)
+      .pipe(
+        tap(_ => this.log('fetched recipes for user')),
+        catchError(this.handleError<Recipe[]>('getRecipesByUsername', []))
       );
   }
 
