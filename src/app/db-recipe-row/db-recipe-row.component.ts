@@ -14,11 +14,14 @@ export class DbRecipeRowComponent implements OnInit {
   recipe!: Recipe;
   @Output()
   deleteThis: EventEmitter<Recipe> = new EventEmitter();
+  icon!: string;
+  tooltip!: string;
 
   constructor(private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
+    this.checkRecipeVisibility();
   }
 
   openDialog(): void {
@@ -27,6 +30,17 @@ export class DbRecipeRowComponent implements OnInit {
 
   deleteRecipe(): void {
     this.deleteThis.emit(this.recipe);
+  }
+
+  checkRecipeVisibility(): void{
+    if(this.recipe.recipePublic){
+      this.icon = 'public';
+      this.tooltip = 'Public';
+    }
+    else{
+      this.icon = 'public_off';
+      this.tooltip = 'Private';
+    }
   }
 
 }

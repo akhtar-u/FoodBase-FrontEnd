@@ -36,7 +36,6 @@ export class RecipeService {
       );
   }
 
-
   deleteRecipe(recipeID: string): Observable<Recipe> {
     return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID, this.httpOptions).pipe(
       tap(_ => this.log('deleted recipe with id: ' + recipeID)),
