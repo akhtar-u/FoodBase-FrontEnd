@@ -12,11 +12,12 @@ import {HeaderComponent} from './header/header.component';
 import {CardsComponent} from './cards/cards.component';
 import {SearchFabComponent} from './search-fab/search-fab.component';
 import {LoginComponent} from './login/login.component';
-import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddRecipeComponent } from './add-recipe/add-recipe.component';
-import { DbRecipeRowComponent } from './db-recipe-row/db-recipe-row.component';
-import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
+import {ViewRecipeComponent} from './view-recipe/view-recipe.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {AddRecipeComponent} from './add-recipe/add-recipe.component';
+import {DbRecipeRowComponent} from './db-recipe-row/db-recipe-row.component';
+import {EditRecipeComponent} from './edit-recipe/edit-recipe.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,17 +32,18 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
     DashboardComponent,
     AddRecipeComponent,
     DbRecipeRowComponent,
-    EditRecipeComponent,
+    EditRecipeComponent
   ],
   entryComponents: [ViewRecipeComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

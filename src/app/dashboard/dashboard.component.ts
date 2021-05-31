@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RecipeService} from '../services/recipe.service';
+import {Recipe} from '../models/recipe';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  recipes: Recipe[] = [];
 
-  ngOnInit(): void {
+  constructor(private recipeService: RecipeService) {
   }
 
+  ngOnInit(): void {
+    this.getRecipes();
+  }
+
+  private getRecipes(): void {
+    this.recipeService.getRecipes()
+      .subscribe(recipes => this.recipes = recipes);
+  }
 }

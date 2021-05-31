@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {ViewRecipeComponent} from '../view-recipe/view-recipe.component';
 
@@ -8,6 +8,9 @@ import {ViewRecipeComponent} from '../view-recipe/view-recipe.component';
   styleUrls: ['./db-recipe-row.component.scss']
 })
 export class DbRecipeRowComponent implements OnInit {
+
+  @Input()
+  recipeName!: string;
 
   constructor(private dialog: MatDialog) { }
 

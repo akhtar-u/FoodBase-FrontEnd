@@ -10,28 +10,8 @@
   <h1> Stored Recipes: </h1>
   <mat-divider></mat-divider>
 
-  <div>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-    <app-db-recipe-row></app-db-recipe-row>
-
+  <div *ngFor="let recipe of recipes">
+    <app-db-recipe-row [recipeName]="recipe.recipeName"></app-db-recipe-row>
   </div>
 
 </div>
