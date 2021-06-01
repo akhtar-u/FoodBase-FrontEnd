@@ -18,6 +18,7 @@ import {AddRecipeComponent} from './add-recipe/add-recipe.component';
 import {DbRecipeRowComponent} from './db-recipe-row/db-recipe-row.component';
 import {EditRecipeComponent} from './edit-recipe/edit-recipe.component';
 import {HttpClientModule} from '@angular/common/http';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {HttpClientModule} from '@angular/common/http';
     DashboardComponent,
     AddRecipeComponent,
     DbRecipeRowComponent,
-    EditRecipeComponent
+    EditRecipeComponent,
+    SearchPipe
   ],
   entryComponents: [ViewRecipeComponent],
   imports: [

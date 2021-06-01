@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   dataLoaded!: boolean;
   lowValue = 0;
   highValue = 20;
+  searchText = '';
 
   constructor(private recipeService: RecipeService) {
   }
