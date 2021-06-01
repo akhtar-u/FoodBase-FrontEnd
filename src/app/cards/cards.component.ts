@@ -12,6 +12,7 @@ import {RecipeService} from '../services/recipe.service';
 export class CardsComponent implements OnInit {
 
   recipes: Recipe[] = [];
+  dataLoaded!: boolean;
 
   constructor(private dialog: MatDialog, private recipeService: RecipeService) { }
 
@@ -21,7 +22,10 @@ export class CardsComponent implements OnInit {
 
   private getRecipes(): void {
     this.recipeService.getRecipes()
-      .subscribe(recipes => this.recipes = recipes);
+      .subscribe(recipes => {
+        this.recipes = recipes;
+        this.dataLoaded = true;
+      });
   }
 
   openDialog(recipe: Recipe): void{

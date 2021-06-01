@@ -4,6 +4,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {RecipeService} from '../services/recipe.service';
+import {Recipe} from '../models/recipe';
 
 @Component({
   selector: 'app-add-recipe',
@@ -21,6 +22,7 @@ export class AddRecipeComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
   fileAttr = '';
   dataImage: any;
+  username = 'Mark';
 
   recipeNameFormGroup!: FormGroup;
   ingredientsFormGroup!: FormGroup;
@@ -28,7 +30,6 @@ export class AddRecipeComponent implements OnInit {
   imageFormGroup!: FormGroup;
   visibilityFormGroup!: FormGroup;
   imageToggleVal!: string;
-
   ingredientsArray: string[] = [];
   instructionsArray: string[] = [];
 
@@ -121,32 +122,37 @@ export class AddRecipeComponent implements OnInit {
       || this.dataImage == null || this.visibilityFormGroup.invalid) {
       this.openSnackBar('Please complete the form correctly!');
     } else {
-      const formData = new FormData();
-      formData.append('recipeName', JSON.stringify(this.recipeNameFormGroup.get('nameCtrl')?.value));
-      formData.append('imageURL', this.dataImage);
-      formData.append('username', 'Mark');
-      formData.append('recipeIngredients', JSON.stringify(this.ingredientsArray));
-      formData.append('recipeInstructions', JSON.stringify(this.instructionsArray));
+      const newRecipe: Recipe = {
+        recipeID: '',
+        recipeName: this.recipeNameFormGroup.get('nameCtrl')?.value,
+        imageURL: this.dataImage,
+        username: this.username,
+        recipePublic: this.visibilityFormGroup.get('visibilityCtrl')?.value.toString() === 'true',
+        recipeIngredients: this.ingredientsArray,
+        recipeInstructions: this.instructionsArray
+      };
 
-      if (this.visibilityFormGroup.get('visibilityCtrl')?.value.toString() === 'true') {
-        formData.append('recipePublic', 'true');
-      } else {
-        formData.append('recipePublic', 'false');
-      }
+      console.log(newRecipe);
 
-      console.log(formData.get('recipeInstructions'));
+      this.recipeService.addRecipe(newRecipe)
+        .subscribe(
+          (response) => {
+            console.log(response);
+            this.router.navigate(['/dashboard']);
+          },
+          (error) => console.log(error));
     }
   }
 
   addToArray(): void {
     for (const i of this.ingredientsFormGroup.get('ingredients')?.value) {
-      if (i.ingredient !== null){
+      if (i.ingredient !== null) {
         this.ingredientsArray.push(i.ingredient);
       }
 
     }
     for (const i of this.instructionsFormGroup.get('instructions')?.value) {
-      if (i.instruction !== null){
+      if (i.instruction !== null) {
         this.instructionsArray.push(i.instruction);
       }
     }

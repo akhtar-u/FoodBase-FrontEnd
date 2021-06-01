@@ -1,18 +1,22 @@
 <div class="db-div">
-  <div>
-    <a routerLink="/addrecipe">
-      <button class="add-recipe-btn" md-fab-bottom-right mat-fab color="accent" matTooltip="Add recipe">
-        <mat-icon>add</mat-icon>
-      </button>
-    </a>
+  <div *ngIf="dataLoaded" class="db-view">
+    <div>
+      <a routerLink="/addrecipe">
+        <button class="add-recipe-btn" md-fab-bottom-right mat-fab color="accent" matTooltip="Add recipe">
+          <mat-icon>add</mat-icon>
+        </button>
+      </a>
+    </div>
+
+    <h1> Stored Recipes: {{recipes.length}}</h1>
+    <mat-divider></mat-divider>
+
+    <div *ngFor="let recipe of recipes">
+      <app-db-recipe-row [recipe]="recipe" (deleteThis)="deleteRecipe($event)"></app-db-recipe-row>
+    </div>
   </div>
-
-  <h1> Stored Recipes: {{recipes.length}}</h1>
-  <mat-divider></mat-divider>
-
-  <div *ngFor="let recipe of recipes">
-    <app-db-recipe-row [recipe]="recipe" (deleteThis)="deleteRecipe($event)"></app-db-recipe-row>
+  <div *ngIf="!dataLoaded" class="loadingData">
+    <mat-spinner color="accent"></mat-spinner>
   </div>
-
 </div>
 

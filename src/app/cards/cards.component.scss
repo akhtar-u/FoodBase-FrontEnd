@@ -6,7 +6,7 @@ mat-card {
   background-color: #1f4068 !important;
 }
 
-mat-card:hover{
+mat-card:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   border: #b0bec5 solid 0.1rem;
 }
@@ -15,8 +15,8 @@ mat-card:hover{
   overflow-y: auto;
   position: absolute;
   top: 60px;
-  bottom:60px;
-  width:100%;
+  bottom: 60px;
+  width: 100%;
   background-color: #343434;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -35,15 +35,21 @@ mat-card-actions {
   text-align: center;
 }
 
-#fav-btn{
+#fav-btn {
   display: none;
 }
 
-mat-grid-list{
+mat-grid-list {
   overflow: auto !important;
 }
 
-mat-card img{
+mat-card img {
   object-fit: cover;
   height: 250px;
+}
+
+.loadingData {
+  margin-top: 10rem;
+  display: flex;
+  justify-content: center;
 }

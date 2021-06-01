@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'addrecipe', component: AddRecipeComponent},
-  { path: 'editrecipe', component: EditRecipeComponent}
+  { path: 'editrecipe', component: EditRecipeComponent},
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

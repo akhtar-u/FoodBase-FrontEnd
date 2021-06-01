@@ -10,6 +10,7 @@ import {Recipe} from '../models/recipe';
 export class DashboardComponent implements OnInit {
 
   recipes: Recipe[] = [];
+  dataLoaded!: boolean;
 
   constructor(private recipeService: RecipeService) {
   }
@@ -20,7 +21,10 @@ export class DashboardComponent implements OnInit {
 
   private getRecipesByUsername(): void {
     this.recipeService.getRecipesByUsername()
-      .subscribe(recipes => this.recipes = recipes);
+      .subscribe(recipes => {
+        this.recipes = recipes;
+        this.dataLoaded = true;
+      });
   }
 
   deleteRecipe(recipe: Recipe): void {

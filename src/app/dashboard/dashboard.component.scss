@@ -17,7 +17,6 @@
   display: none;
 }
 
-
 h1 {
   margin-top: 1rem;
 }
@@ -29,4 +28,10 @@ h1 {
   left: auto !important;
   position: fixed !important;
   z-index: 1;
+}
+
+.loadingData{
+  margin-top: 10rem;
+  display: flex;
+  justify-content: center;
 }

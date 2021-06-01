@@ -1,4 +1,5 @@
 <div class="main-content">
+  <div *ngIf="dataLoaded" class="cards-view">
   <mat-grid-list appGridCols rowHeight="400px" gutterSize="1rem">
     <app-search-fab></app-search-fab>
 
@@ -15,6 +16,9 @@
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
-
   </mat-grid-list>
+  </div>
+  <div *ngIf="!dataLoaded" class="loadingData">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
 </div>
