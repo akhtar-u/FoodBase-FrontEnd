@@ -17,6 +17,7 @@ export class CardsComponent implements OnInit {
   lowValue = 0;
   highValue = 20;
   searchText = '';
+  searching = false;
 
   constructor(private dialog: MatDialog, private recipeService: RecipeService) { }
 

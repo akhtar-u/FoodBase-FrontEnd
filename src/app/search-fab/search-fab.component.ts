@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-search-fab',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchFabComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  searching!: boolean;
+  icon = 'search';
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  checkIfSearching(): void {
+    if (this.searching) {
+      this.icon = 'search';
+    }
+    else{
+      this.icon = 'close';
+    }
+  }
 }
