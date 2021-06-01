@@ -1,4 +1,11 @@
 <div class="db-div">
+  <div>
+    <mat-paginator [length]="recipes.length" pageSize=10
+                   (page)="getPaginatorData($event)" [pageSizeOptions]="[1, 10, 20]"
+                   showFirstLastButtons="false">
+    </mat-paginator>
+  </div>
+
   <div *ngIf="dataLoaded" class="db-view">
     <div>
       <a routerLink="/addrecipe">
@@ -8,10 +15,9 @@
       </a>
     </div>
 
-    <h1> Stored Recipes: {{recipes.length}}</h1>
     <mat-divider></mat-divider>
 
-    <div *ngFor="let recipe of recipes">
+    <div *ngFor="let recipe of (recipes | slice: lowValue : highValue)">
       <app-db-recipe-row [recipe]="recipe" (deleteThis)="deleteRecipe($event)"></app-db-recipe-row>
     </div>
   </div>

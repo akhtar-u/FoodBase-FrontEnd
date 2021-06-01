@@ -1,8 +1,11 @@
 <div class="main-content">
-  <mat-paginator [length]="recipes.length" pageSize=10
-                 (page)="getPaginatorData($event)" [pageSizeOptions]="[1, 10, 20]"
-                 showFirstLastButtons="false">
-  </mat-paginator>
+  <div>
+    <mat-paginator [length]="recipes.length" pageSize=10
+                   (page)="getPaginatorData($event)" [pageSizeOptions]="[1, 10, 20]"
+                   showFirstLastButtons="false">
+    </mat-paginator>
+  </div>
+
   <div *ngIf="dataLoaded" class="cards-view">
   <mat-grid-list appGridCols rowHeight="400px" gutterSize="1rem">
     <app-search-fab></app-search-fab>
