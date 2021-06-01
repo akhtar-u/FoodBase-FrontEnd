@@ -36,6 +36,13 @@ export class RecipeService {
       );
   }
 
+  addRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.post<Recipe>(this.recipesURL + '/add', recipe, this.httpOptions).pipe(
+      tap((newRecipe: Recipe) => this.log('added new recipe' + newRecipe)),
+      catchError(this.handleError<Recipe>('addRecipe'))
+    );
+  }
+
   deleteRecipe(recipeID: string): Observable<Recipe> {
     return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID, this.httpOptions).pipe(
       tap(_ => this.log('deleted recipe with id: ' + recipeID)),

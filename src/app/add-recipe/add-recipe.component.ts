@@ -3,6 +3,7 @@ import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from '@a
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
+import {RecipeService} from '../services/recipe.service';
 
 @Component({
   selector: 'app-add-recipe',
@@ -31,7 +32,8 @@ export class AddRecipeComponent implements OnInit {
   ingredientsArray: string[] = [];
   instructionsArray: string[] = [];
 
-  constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, private router: Router,
+              private recipeService: RecipeService) {
     this.dataImage = null;
   }
 
