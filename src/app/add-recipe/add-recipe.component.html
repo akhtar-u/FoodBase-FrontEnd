@@ -1,11 +1,12 @@
 <div class="add-recipe-div">
+  <form (ngSubmit)="addRecipe()">
   <mat-vertical-stepper color="accent" #stepper>
-    <mat-step [stepControl]="firstFormGroup" errorMessage="Recipe name is required.">
-      <form [formGroup]="firstFormGroup">
+    <mat-step [stepControl]="recipeNameFormGroup" errorMessage="Recipe name is required.">
+      <form [formGroup]="recipeNameFormGroup">
         <ng-template matStepLabel>Enter recipe name</ng-template>
         <mat-form-field>
           <mat-label>Recipe name</mat-label>
-          <input matInput placeholder="name" formControlName="firstCtrl" required>
+          <input matInput placeholder="name" formControlName="nameCtrl" required>
         </mat-form-field>
       </form>
     </mat-step>
@@ -13,15 +14,11 @@
     <mat-step [stepControl]="ingredientsFormGroup" errorMessage="Minimum one ingredient is required">
       <form [formGroup]="ingredientsFormGroup">
         <ng-template matStepLabel>Enter recipe ingredients</ng-template>
-        <mat-form-field>
-          <mat-label>Ingredient</mat-label>
-          <input matInput placeholder="1 cup water" formControlName="ingredientsCtrl" required>
-        </mat-form-field>
         <div formArrayName="ingredients">
           <div *ngFor="let ingredient of ingredients; let i = index;" [formGroupName]="i">
             <mat-form-field>
               <mat-label>Ingredient</mat-label>
-              <input matInput placeholder="1 cup water">
+              <input formControlName="ingredient" matInput placeholder="1 cup water">
             </mat-form-field>
             <button (click)="removeIngredient(i)" mat-icon-button matTooltip="Remove ingredient">
               <mat-icon>
@@ -44,15 +41,11 @@
     <mat-step [stepControl]="instructionsFormGroup" errorMessage="Minimum one instruction is required">
       <form [formGroup]="instructionsFormGroup">
         <ng-template matStepLabel>Enter recipe instruction</ng-template>
-        <mat-form-field>
-          <mat-label>Instruction</mat-label>
-          <input matInput placeholder="Mix flour and water..." formControlName="instructionsCtrl" required>
-        </mat-form-field>
         <div formArrayName="instructions">
           <div *ngFor="let instruction of instructions; let i = index;" [formGroupName]="i">
             <mat-form-field>
               <mat-label>Instruction</mat-label>
-              <input matInput placeholder="Mix flour and water...">
+              <input formControlName="instruction" matInput placeholder="Mix flour and water...">
             </mat-form-field>
             <button (click)="removeInstruction(i)" mat-icon-button matTooltip="Remove instruction">
               <mat-icon>
@@ -92,7 +85,7 @@
           <mat-form-field *ngIf="imageToggleVal == 'upload'">
             <input matInput [(ngModel)]="fileAttr" [ngModelOptions]="{standalone: true}" readonly name="name"/>
             <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile"
-                   formControlName="imageCtrl" accept="image/*"/>
+                   accept="image/*"/>
           </mat-form-field>
         </div>
 
@@ -102,19 +95,19 @@
       </form>
     </mat-step>
 
-    <mat-step [stepControl]="fifthFormGroup" errorMessage="Make recipe public?">
-      <form [formGroup]="fifthFormGroup">
-        <ng-template matStepLabel>Choose recipe visibility option</ng-template>
-        <mat-button-toggle-group formControlName="fifthCtrl" name="recipe-visibility">
-          <mat-button-toggle value="private">Private</mat-button-toggle>
-          <mat-button-toggle value="public">Public</mat-button-toggle>
+    <mat-step [stepControl]="visibilityFormGroup" errorMessage="Make recipe public?">
+      <form [formGroup]="visibilityFormGroup">
+        <ng-template matStepLabel>Make recipe public</ng-template>
+        <mat-button-toggle-group formControlName="visibilityCtrl" name="recipe-visibility">
+          <mat-button-toggle value="true">Yes</mat-button-toggle>
+          <mat-button-toggle value="false">No</mat-button-toggle>
         </mat-button-toggle-group>
       </form>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
       <div>
-        <button (click)="addRecipe()" id="submit-btn" color="accent" mat-icon-button matTooltip="Submit recipe">
+        <button id="submit-btn" color="accent" mat-icon-button matTooltip="Submit recipe">
           <mat-icon>
             done
           </mat-icon>
@@ -122,4 +115,5 @@
       </div>
     </mat-step>
   </mat-vertical-stepper>
+  </form>
 </div>

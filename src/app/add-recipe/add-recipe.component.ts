@@ -1,7 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-recipe',
@@ -20,42 +21,37 @@ export class AddRecipeComponent implements OnInit {
   fileAttr = '';
   dataImage: any;
 
-  firstFormGroup!: FormGroup;
-  secondFormGroup!: FormGroup;
-  imageFormGroup!: FormGroup;
+  recipeNameFormGroup!: FormGroup;
   ingredientsFormGroup!: FormGroup;
   instructionsFormGroup!: FormGroup;
-  fifthFormGroup!: FormGroup;
+  imageFormGroup!: FormGroup;
+  visibilityFormGroup!: FormGroup;
   imageToggleVal!: string;
 
-  constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
+  ingredientsArray: string[] = [];
+  instructionsArray: string[] = [];
+
+  constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, private router: Router) {
     this.dataImage = null;
   }
 
   ngOnInit(): void {
-    this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
+    this.recipeNameFormGroup = this.formBuilder.group({
+      nameCtrl: ['', Validators.required]
     });
     this.imageFormGroup = this.formBuilder.group({
       imageCtrl: ['', [Validators.pattern('^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&\'\\(\\)\\*\\+,;=.]+$')
       ]]
     });
-    this.fifthFormGroup = this.formBuilder.group({
-      fifthCtrl: ['', Validators.required]
+    this.visibilityFormGroup = this.formBuilder.group({
+      visibilityCtrl: ['', Validators.required]
     });
     this.ingredientsFormGroup = this.formBuilder.group({
-      ingredientsCtrl: ['', Validators.required],
       ingredients: this.formBuilder.array([])
     });
     this.instructionsFormGroup = this.formBuilder.group({
-      instructionsCtrl: ['', Validators.required],
       instructions: this.formBuilder.array([])
     });
-
-
   }
 
   addIngredient(): void {
@@ -100,9 +96,7 @@ export class AddRecipeComponent implements OnInit {
         const image = new Image();
         image.src = e.target.result;
         image.onload = rs => {
-          const imgBase64Path = e.target.result;
-          console.log(imgBase64Path);
-          this.dataImage = imgBase64Path;
+          this.dataImage = e.target.result;
         };
       };
       reader.readAsDataURL(imgFile.target.files[0]);
@@ -119,10 +113,40 @@ export class AddRecipeComponent implements OnInit {
   }
 
   addRecipe(): void {
-    if (this.dataImage === null) {
-      this.openSnackBar('You must upload or link an image!');
+    this.addToArray();
+
+    if (this.recipeNameFormGroup.invalid || this.ingredientsArray.length === 0 || this.instructionsArray.length === 0
+      || this.dataImage == null || this.visibilityFormGroup.invalid) {
+      this.openSnackBar('Please complete the form correctly!');
     } else {
-      this.openSnackBar('Adding recipe....');
+      const formData = new FormData();
+      formData.append('recipeName', JSON.stringify(this.recipeNameFormGroup.get('nameCtrl')?.value));
+      formData.append('imageURL', this.dataImage);
+      formData.append('username', 'Mark');
+      formData.append('recipeIngredients', JSON.stringify(this.ingredientsArray));
+      formData.append('recipeInstructions', JSON.stringify(this.instructionsArray));
+
+      if (this.visibilityFormGroup.get('visibilityCtrl')?.value.toString() === 'true') {
+        formData.append('recipePublic', 'true');
+      } else {
+        formData.append('recipePublic', 'false');
+      }
+
+      console.log(formData.get('recipeInstructions'));
+    }
+  }
+
+  addToArray(): void {
+    for (const i of this.ingredientsFormGroup.get('ingredients')?.value) {
+      if (i.ingredient !== null){
+        this.ingredientsArray.push(i.ingredient);
+      }
+
+    }
+    for (const i of this.instructionsFormGroup.get('instructions')?.value) {
+      if (i.instruction !== null){
+        this.instructionsArray.push(i.instruction);
+      }
     }
   }
 
@@ -137,5 +161,6 @@ export class AddRecipeComponent implements OnInit {
 
   onValChange(value: any): void {
     this.imageToggleVal = value;
+    this.dataImage = null;
   }
 }
