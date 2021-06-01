@@ -57,3 +57,11 @@ mat-card img {
 ::ng-deep .mat-paginator-range-label{
   display: none !important;
 }
+
+.search{
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+  color: white;
+}

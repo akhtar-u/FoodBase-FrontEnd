@@ -22,7 +22,7 @@
 
     <mat-divider></mat-divider>
 
-    <div *ngFor="let recipe of (recipes | slice: lowValue : highValue) | search: searchText">
+    <div *ngFor="let recipe of (recipes | search: searchText |  slice: lowValue : highValue)">
       <app-db-recipe-row [recipe]="recipe" (deleteThis)="deleteRecipe($event)"></app-db-recipe-row>
     </div>
   </div>
