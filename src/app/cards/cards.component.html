@@ -1,9 +1,13 @@
 <div class="main-content">
+  <mat-paginator [length]="recipes.length" pageSize=10
+                 (page)="getPaginatorData($event)" [pageSizeOptions]="[10, 20, 30]"
+                 showFirstLastButtons="false">
+  </mat-paginator>
   <div *ngIf="dataLoaded" class="cards-view">
   <mat-grid-list appGridCols rowHeight="400px" gutterSize="1rem">
     <app-search-fab></app-search-fab>
 
-    <mat-grid-tile *ngFor="let recipe of recipes">
+    <mat-grid-tile *ngFor="let recipe of (recipes | slice: lowValue : highValue)">
       <mat-card class="card">
         <mat-card-header>
           <mat-card-title>{{recipe.recipeName}}</mat-card-title>
@@ -22,3 +26,4 @@
     <mat-spinner color="accent"></mat-spinner>
   </div>
 </div>
+
