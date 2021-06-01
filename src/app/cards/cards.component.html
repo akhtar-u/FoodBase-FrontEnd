@@ -1,6 +1,6 @@
 <div class="main-content">
   <mat-paginator [length]="recipes.length" pageSize=10
-                 (page)="getPaginatorData($event)" [pageSizeOptions]="[10, 20, 30]"
+                 (page)="getPaginatorData($event)" [pageSizeOptions]="[1, 10, 20]"
                  showFirstLastButtons="false">
   </mat-paginator>
   <div *ngIf="dataLoaded" class="cards-view">

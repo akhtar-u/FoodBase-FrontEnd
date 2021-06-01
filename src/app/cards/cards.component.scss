@@ -53,3 +53,7 @@ mat-card img {
   display: flex;
   justify-content: center;
 }
+
+::ng-deep .mat-paginator-range-label{
+  display: none !important;
+}
