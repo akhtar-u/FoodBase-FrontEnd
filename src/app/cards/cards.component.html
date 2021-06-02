@@ -1,5 +1,5 @@
 <div class="main-content">
-  <div>
+  <div *ngIf="dataLoaded">
     <mat-paginator color="accent" [length]="recipes.length" pageSize=10
                    (page)="getPaginatorData($event)" [pageSizeOptions]="[1, 10, 20]"
                    showFirstLastButtons="false">

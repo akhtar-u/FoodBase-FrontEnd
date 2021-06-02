@@ -10,6 +10,7 @@ export class SearchFabComponent implements OnInit {
   @Input()
   searching!: boolean;
   icon = 'search';
+  tooltipText = 'Search';
 
   constructor() {
   }
@@ -20,9 +21,11 @@ export class SearchFabComponent implements OnInit {
   checkIfSearching(): void {
     if (this.searching) {
       this.icon = 'search';
+      this.tooltipText = 'Search';
     }
     else{
       this.icon = 'close';
+      this.tooltipText = 'Close search';
     }
   }
 }
