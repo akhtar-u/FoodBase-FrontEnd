@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {ViewRecipeComponent} from '../view-recipe/view-recipe.component';
 import {Recipe} from '../models/recipe';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-db-recipe-row',
@@ -17,7 +18,7 @@ export class DbRecipeRowComponent implements OnInit {
   icon!: string;
   tooltip!: string;
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -41,10 +42,16 @@ export class DbRecipeRowComponent implements OnInit {
     if (this.recipe.recipePublic) {
       this.icon = 'public';
       this.tooltip = 'Public';
-    } else {
+    }
+    else {
       this.icon = 'public_off';
       this.tooltip = 'Private';
     }
   }
 
+  editRecipe(): void {
+    this.router.navigateByUrl('/editrecipe', {
+      state: {recipe: this.recipe}
+    });
+  }
 }

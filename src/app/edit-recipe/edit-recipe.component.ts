@@ -1,7 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {RecipeService} from '../services/recipe.service';
+import {Recipe} from '../models/recipe';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -17,9 +18,12 @@ export class EditRecipeComponent implements OnInit {
   fileAttr = '';
   dataImage: any;
   imageToggleVal!: string;
+  recipe: any;
+
 
   constructor(private snackBar: MatSnackBar, private router: Router,
               private recipeService: RecipeService) {
+    this.recipe = this.router.getCurrentNavigation()?.extras.state?.recipe;
   }
 
   ngOnInit(): void {
