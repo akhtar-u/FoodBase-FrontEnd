@@ -20,7 +20,6 @@ export class EditRecipeComponent implements OnInit {
   imageToggleVal!: string;
   recipe: any;
 
-
   constructor(private snackBar: MatSnackBar, private router: Router,
               private recipeService: RecipeService) {
     this.recipe = this.router.getCurrentNavigation()?.extras.state?.recipe;

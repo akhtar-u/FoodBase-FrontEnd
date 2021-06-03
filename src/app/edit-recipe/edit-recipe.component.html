@@ -2,19 +2,19 @@
   <div class="recipe-name">
     <mat-form-field>
       <mat-label>Recipe name</mat-label>
-      <input matInput>
+      <input matInput value="{{recipe.recipeName}}">
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field>
+    <mat-form-field *ngFor="let ingredient of recipe.recipeIngredients">
       <mat-label>Ingredients</mat-label>
-      <input matInput>
+      <input matInput value="{{ingredient}}">
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field>
+    <mat-form-field *ngFor="let instruction of recipe.recipeInstructions">
       <mat-label>Instructions</mat-label>
-      <input matInput>
+      <input matInput value="{{instruction}}">
     </mat-form-field>
   </div>
   <div class="image">
@@ -38,7 +38,7 @@
     </div>
 
     <div>
-      <img id='preview-img' src="{{dataImage}}">
+      <img id='preview-img' src="{{dataImage || recipe.imageData}}">
     </div>
   </div>
 
