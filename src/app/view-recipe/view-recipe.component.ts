@@ -11,7 +11,7 @@ export class ViewRecipeComponent implements OnInit {
   recipeName!: string;
   ingredients!: string[];
   instructions!: string[];
-  imageURL!: string;
+  imageData!: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -21,6 +21,6 @@ export class ViewRecipeComponent implements OnInit {
     this.recipeName = this.data.recipe.recipeName;
     this.ingredients = this.data.recipe.recipeIngredients;
     this.instructions = this.data.recipe.recipeInstructions;
-    this.imageURL = this.data.recipe.imageURL;
+    this.imageData = this.data.recipe.imageData;
   }
 }

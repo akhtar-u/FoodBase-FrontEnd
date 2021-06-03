@@ -125,7 +125,7 @@ export class AddRecipeComponent implements OnInit {
       const newRecipe: Recipe = {
         recipeID: '',
         recipeName: this.recipeNameFormGroup.get('nameCtrl')?.value,
-        imageURL: this.dataImage,
+        imageData: this.dataImage,
         username: this.username,
         recipePublic: this.visibilityFormGroup.get('visibilityCtrl')?.value.toString() === 'true',
         recipeIngredients: this.ingredientsArray,
