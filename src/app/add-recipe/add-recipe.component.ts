@@ -132,7 +132,7 @@ export class AddRecipeComponent implements OnInit {
         recipeInstructions: this.instructionsArray
       };
 
-      this.openSnackBar('Adding recipe...');
+      this.openSnackBar('Adding recipe... please wait to be redirected to dashboard');
 
       this.recipeService.addRecipe(newRecipe)
         .subscribe(
