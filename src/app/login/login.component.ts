@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 
@@ -8,6 +8,8 @@ import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition}
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  @ViewChild('loginEmail') loginEmail!: ElementRef;
 
   private emailRegexPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   private horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -42,12 +44,11 @@ export class LoginComponent implements OnInit {
     return '';
   }
 
-  signIn(): void{
-    if (this.password.invalid || this.email.invalid){
+  signIn(): void {
+    if (this.password.invalid || this.email.invalid) {
       this.openSnackBar('You must enter both a valid email and password!');
-    }
-    else{
-      console.log('Sending sign in request...');
+    } else {
+      this.openSnackBar('Signing in ...');
     }
   }
 
@@ -58,5 +59,14 @@ export class LoginComponent implements OnInit {
       duration: 3000,
       panelClass: 'reset-bar'
     });
+  }
+
+  resetPassword(): void {
+    if (this.email.invalid) {
+      this.openSnackBar('Password sent to email if account exists.');
+    }
+    else{
+      this.openSnackBar('Password sent to email if account exists.');
+    }
   }
 }

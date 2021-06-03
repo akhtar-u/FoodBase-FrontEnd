@@ -4,7 +4,7 @@
       <div class="login-form">
         <mat-form-field appearance="fill" color="accent">
           <mat-label>Enter your email</mat-label>
-          <input matInput placeholder="pat@example.com" [formControl]="email" required>
+          <input matInput #loginEmail placeholder="pat@example.com" [formControl]="email" required>
           <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
 
@@ -21,7 +21,7 @@
 
           <p>Forgot password?</p>
           <div class="login-btns">
-            <button (click)="openSnackBar('Your password has been reset!')" mat-stroked-button> Reset</button>
+            <button (click)="resetPassword()" mat-stroked-button> Reset</button>
             <button mat-stroked-button (click)="signIn()"> Sign In</button>
           </div>
 
