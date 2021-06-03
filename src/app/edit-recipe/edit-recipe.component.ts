@@ -1,4 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
+import {RecipeService} from '../services/recipe.service';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -7,12 +10,16 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 })
 export class EditRecipeComponent implements OnInit {
 
+  private horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  private verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   @ViewChild('fileInput') fileInput!: ElementRef;
   fileAttr = '';
   dataImage: any;
   imageToggleVal!: string;
 
-  constructor() {
+  constructor(private snackBar: MatSnackBar, private router: Router,
+              private recipeService: RecipeService) {
   }
 
   ngOnInit(): void {
@@ -54,4 +61,22 @@ export class EditRecipeComponent implements OnInit {
     this.dataImage = null;
   }
 
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 3000,
+      panelClass: 'reset-bar'
+    });
+  }
+
+  updateRecipe(): void {
+    this.openSnackBar('Updating recipe...');
+    // this.recipeService.updateRecipe(updatedRecipe)
+    //   .subscribe(
+    //     (response) => {
+    //       this.router.navigate(['/dashboard']);
+    //     },
+    //     (error) => error);
+  }
 }

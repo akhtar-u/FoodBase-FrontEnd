@@ -43,6 +43,13 @@ export class RecipeService {
     );
   }
 
+  updateRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.put<Recipe>(this.recipesURL + '/update', recipe, this.httpOptions).pipe(
+      catchError(this.handleError<Recipe>('updateRecipe'))
+    );
+  }
+
+
   register(register: Register): Observable<Register> {
     return this.http.post<Register>(this.recipesURL + '/register', register, this.httpOptions).pipe(
       catchError(this.handleError<Register>('register'))
@@ -66,6 +73,4 @@ export class RecipeService {
       return of(result as T);
     };
   }
-
-
 }
