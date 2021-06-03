@@ -9,7 +9,10 @@ import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition}
 })
 export class LoginComponent implements OnInit {
 
-  @ViewChild('loginEmail') loginEmail!: ElementRef;
+  @ViewChild('emailOne') emailOne!: ElementRef;
+  @ViewChild('emailTwo') emailTwo!: ElementRef;
+  @ViewChild('passOne') passOne!: ElementRef;
+  @ViewChild('passTwo') passTwo!: ElementRef;
 
   private emailRegexPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   private horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -20,6 +23,7 @@ export class LoginComponent implements OnInit {
   public email: FormControl = new FormControl('', [Validators.required,
     Validators.pattern(this.emailRegexPattern)]);
   public password: FormControl = new FormControl('', Validators.required);
+  public username: FormControl = new FormControl('', Validators.required);
 
 
   constructor(private snackBar: MatSnackBar) {
@@ -63,10 +67,21 @@ export class LoginComponent implements OnInit {
 
   resetPassword(): void {
     if (this.email.invalid) {
+      this.openSnackBar('Please enter a valid email to reset password');
+    } else {
       this.openSnackBar('Password sent to email if account exists.');
     }
-    else{
-      this.openSnackBar('Password sent to email if account exists.');
+  }
+
+  register(): void {
+    if (this.email.invalid || this.username.invalid || this.password.invalid) {
+      this.openSnackBar('Enter valid values for fields!');
+    } else if (this.emailOne.nativeElement.value !== this.emailTwo.nativeElement.value) {
+      this.openSnackBar('Both emails must match!');
+    } else if (this.passOne.nativeElement.value !== this.passTwo.nativeElement.value) {
+      this.openSnackBar('Both passwords must match');
+    } else if (this.passOne.nativeElement.value.length < 8) {
+      this.openSnackBar('Password length must be at least 8 characters!');
     }
   }
 }
