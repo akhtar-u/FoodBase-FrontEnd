@@ -132,6 +132,7 @@ export class AddRecipeComponent implements OnInit {
         recipeInstructions: this.instructionsArray
       };
 
+      this.openSnackBar('Adding recipe...');
 
       this.recipeService.addRecipe(newRecipe)
         .subscribe(
