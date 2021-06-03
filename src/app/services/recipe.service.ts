@@ -4,6 +4,8 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {Recipe} from '../models/recipe';
 import {environment} from '../../environments/environment';
+import {Register} from '../models/register';
+import {Login} from '../models/login';
 
 
 @Injectable({
@@ -38,6 +40,18 @@ export class RecipeService {
   addRecipe(recipe: Recipe): Observable<Recipe> {
     return this.http.post<Recipe>(this.recipesURL + '/add', recipe, this.httpOptions).pipe(
       catchError(this.handleError<Recipe>('addRecipe'))
+    );
+  }
+
+  register(register: Register): Observable<Register> {
+    return this.http.post<Register>(this.recipesURL + '/register', register, this.httpOptions).pipe(
+      catchError(this.handleError<Register>('register'))
+    );
+  }
+
+  login(login: Login): Observable<Login> {
+    return this.http.post<Login>(this.recipesURL + '/login', login, this.httpOptions).pipe(
+      catchError(this.handleError<Login>('login'))
     );
   }
 

@@ -1,6 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
+import {RecipeService} from '../services/recipe.service';
+import {Router} from '@angular/router';
+import {Recipe} from '../models/recipe';
+import {Register} from '../models/register';
+import {Login} from '../models/login';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +31,8 @@ export class LoginComponent implements OnInit {
   public username: FormControl = new FormControl('', Validators.required);
 
 
-  constructor(private snackBar: MatSnackBar) {
+  constructor(private snackBar: MatSnackBar, private recipeService: RecipeService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -51,10 +57,23 @@ export class LoginComponent implements OnInit {
   signIn(): void {
     if (this.password.invalid || this.email.invalid) {
       this.openSnackBar('You must enter both a valid email and password!');
-    } else {
+    }
+    else {
       this.openSnackBar('Signing in ...');
+
+      const login: Login = {
+        email: this.email.value,
+        password: this.password.value
+      };
+
+      this.recipeService.login(login)
+        .subscribe(
+          (response) => {
+          },
+          (error) => error);
     }
   }
+
 
   openSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
@@ -68,7 +87,8 @@ export class LoginComponent implements OnInit {
   resetPassword(): void {
     if (this.email.invalid) {
       this.openSnackBar('Please enter a valid email to reset password');
-    } else {
+    }
+    else {
       this.openSnackBar('Password sent to email if account exists.');
     }
   }
@@ -76,12 +96,33 @@ export class LoginComponent implements OnInit {
   register(): void {
     if (this.email.invalid || this.username.invalid || this.password.invalid) {
       this.openSnackBar('Enter valid values for fields!');
-    } else if (this.emailOne.nativeElement.value !== this.emailTwo.nativeElement.value) {
+    }
+    else if (this.emailOne.nativeElement.value !== this.emailTwo.nativeElement.value) {
       this.openSnackBar('Both emails must match!');
-    } else if (this.passOne.nativeElement.value !== this.passTwo.nativeElement.value) {
+    }
+    else if (this.passOne.nativeElement.value !== this.passTwo.nativeElement.value) {
       this.openSnackBar('Both passwords must match');
-    } else if (this.passOne.nativeElement.value.length < 8) {
+    }
+    else if (this.passOne.nativeElement.value.length < 8) {
       this.openSnackBar('Password length must be at least 8 characters!');
+    }
+    else {
+      this.openSnackBar('Registering...');
+
+      const register: Register = {
+        username: this.username.value,
+        email: this.emailOne.nativeElement.value,
+        emailConfirm: this.emailTwo.nativeElement.value,
+        password: this.passOne.nativeElement.value,
+        passwordConfirm: this.passTwo.nativeElement.value
+      };
+
+      this.recipeService.register(register)
+        .subscribe(
+          (response) => {
+          },
+          (error) => error);
     }
   }
 }
+
