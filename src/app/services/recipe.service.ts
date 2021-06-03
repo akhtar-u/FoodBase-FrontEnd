@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {Recipe} from '../models/recipe';
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import {Recipe} from '../models/recipe';
 })
 export class RecipeService {
 
-  private recipesURL = 'http://localhost:8080/database';
+  private recipesURL = environment.API_URL;
   private username = 'Mark';
 
   private httpOptions = {
@@ -23,7 +24,6 @@ export class RecipeService {
   getRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.recipesURL + '/public')
       .pipe(
-        tap(_ => this.log('fetched recipes')),
         catchError(this.handleError<Recipe[]>('getRecipes', []))
       );
   }
@@ -31,41 +31,27 @@ export class RecipeService {
   getRecipesByUsername(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.recipesURL + '/get/' + this.username)
       .pipe(
-        tap(_ => this.log('fetched recipes for user')),
         catchError(this.handleError<Recipe[]>('getRecipesByUsername', []))
       );
   }
 
   addRecipe(recipe: Recipe): Observable<Recipe> {
     return this.http.post<Recipe>(this.recipesURL + '/add', recipe, this.httpOptions).pipe(
-      tap((newRecipe: Recipe) => this.log('added new recipe' + newRecipe)),
       catchError(this.handleError<Recipe>('addRecipe'))
     );
   }
 
   deleteRecipe(recipeID: string): Observable<Recipe> {
     return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID, this.httpOptions).pipe(
-      tap(_ => this.log('deleted recipe with id: ' + recipeID)),
       catchError(this.handleError<Recipe>('deleteRecipe'))
     );
   }
 
   private handleError<T>(operation = 'operation', result?: T): (error: any) => Observable<T> {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
 
-  private log(message: string): void {
-    console.log(`RecipeService: ${message}`);
-  }
 
 }

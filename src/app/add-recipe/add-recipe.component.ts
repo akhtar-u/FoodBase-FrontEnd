@@ -132,15 +132,13 @@ export class AddRecipeComponent implements OnInit {
         recipeInstructions: this.instructionsArray
       };
 
-      console.log(newRecipe);
 
       this.recipeService.addRecipe(newRecipe)
         .subscribe(
           (response) => {
-            console.log(response);
             this.router.navigate(['/dashboard']);
           },
-          (error) => console.log(error));
+          (error) => error);
     }
   }
 
