@@ -1,21 +1,57 @@
-<div class="main-content-div">
-  <div class="edit-div">
+<div class="edit-div">
+  <div class="recipe-name">
     <mat-form-field>
       <mat-label>Recipe name</mat-label>
       <input matInput>
     </mat-form-field>
-
+  </div>
+  <div>
     <mat-form-field>
-      <mat-label>Recipe name</mat-label>
+      <mat-label>Ingredients</mat-label>
       <input matInput>
     </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Instructions</mat-label>
+      <input matInput>
+    </mat-form-field>
+  </div>
+  <div class="image">
+    <mat-button-toggle-group class="toggle-btns" (change)="onValChange($event.value)">
+      <mat-button-toggle value="link">Link</mat-button-toggle>
+      <mat-button-toggle value="upload">Upload</mat-button-toggle>
+    </mat-button-toggle-group>
 
     <div>
-      <mat-button-toggle-group>
-        <mat-button-toggle value="private">Private</mat-button-toggle>
-        <mat-button-toggle value="public">Public</mat-button-toggle>
-      </mat-button-toggle-group>
+      <mat-form-field *ngIf="imageToggleVal == 'link'" color="accent">
+        <mat-label>URL to image</mat-label>
+        <input (change)="showPreview($event)" matInput type="url"
+               placeholder="https://www.gstatic.com/webp/gallery/1.webp"
+               formControlName="imageCtrl">
+      </mat-form-field>
+      <mat-form-field *ngIf="imageToggleVal == 'upload'">
+        <input matInput [(ngModel)]="fileAttr" [ngModelOptions]="{standalone: true}" readonly name="name"/>
+        <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile"
+               accept="image/*"/>
+      </mat-form-field>
     </div>
 
+    <div>
+      <img id='preview-img' src="{{dataImage}}">
+    </div>
+  </div>
+
+
+  <div>
+    Make recipe public?
+    <mat-button-toggle-group>
+      <mat-button-toggle value="true">Yes</mat-button-toggle>
+      <mat-button-toggle value="false">No</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="submit">
+    <button mat-stroked-button color="accent">Update recipe</button>
   </div>
 </div>
+

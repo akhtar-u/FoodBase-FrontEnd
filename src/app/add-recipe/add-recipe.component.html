@@ -75,7 +75,7 @@
         </mat-button-toggle-group>
 
         <div>
-          <mat-form-field *ngIf="imageToggleVal == 'link'">
+          <mat-form-field *ngIf="imageToggleVal == 'link'" color="accent">
             <mat-label>URL to image</mat-label>
             <input (change)="showPreview($event)" matInput type="url"
                    placeholder="https://www.gstatic.com/webp/gallery/1.webp"
