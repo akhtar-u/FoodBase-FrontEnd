@@ -1,9 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 import {RecipeService} from '../services/recipe.service';
 import {Router} from '@angular/router';
-import {Recipe} from '../models/recipe';
 import {Register} from '../models/register';
 import {Login} from '../models/login';
 

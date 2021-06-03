@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {ViewRecipeComponent} from '../view-recipe/view-recipe.component';
 import {Recipe} from '../models/recipe';
