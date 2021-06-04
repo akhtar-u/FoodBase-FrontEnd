@@ -13,12 +13,12 @@ import {Login} from '../models/login';
 })
 export class RecipeService {
 
-  private recipesURL = environment.API_URL;
+  private recipesURL = 'https://tranquil-depths-73332.herokuapp.com/database';
   private username = 'Mark';
 
   private httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.API_URL})
+      'Access-Control-Allow-Origin': this.recipesURL})
   };
 
   constructor(private http: HttpClient) {

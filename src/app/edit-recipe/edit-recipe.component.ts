@@ -18,7 +18,11 @@ export class EditRecipeComponent implements OnInit {
   fileAttr = '';
   dataImage: any;
   imageToggleVal!: string;
-  recipe: any;
+  recipe!: Recipe;
+  visibility!: boolean;
+  recipeName!: string;
+  ingredientsArray: string[] = [];
+  instructionsArray: string[] = [];
 
   constructor(private snackBar: MatSnackBar, private router: Router,
               private recipeService: RecipeService) {
@@ -26,6 +30,11 @@ export class EditRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.visibility = this.recipe.recipePublic;
+    this.dataImage = this.recipe.imageData;
+    this.recipeName = this.recipe.recipeName;
+    this.ingredientsArray = this.recipe.recipeIngredients;
+    this.instructionsArray = this.recipe.recipeInstructions;
   }
 
   uploadFileEvt(imgFile: any): void {
@@ -74,6 +83,19 @@ export class EditRecipeComponent implements OnInit {
   }
 
   updateRecipe(): void {
+    const newRecipe: Recipe = {
+      recipeID: this.recipe.recipeID,
+      recipeName: this.recipeName,
+      imageData: this.dataImage,
+      username: this.recipe.username,
+      recipePublic: this.visibility,
+      recipeIngredients: this.ingredientsArray,
+      recipeInstructions: this.instructionsArray
+    };
+
+    console.log(newRecipe);
+
+
     this.openSnackBar('Updating recipe...');
     // this.recipeService.updateRecipe(updatedRecipe)
     //   .subscribe(
@@ -81,5 +103,9 @@ export class EditRecipeComponent implements OnInit {
     //       this.router.navigate(['/dashboard']);
     //     },
     //     (error) => error);
+  }
+
+  onVisibilityChanged(value: any): void {
+    this.visibility = value === 'true';
   }
 }

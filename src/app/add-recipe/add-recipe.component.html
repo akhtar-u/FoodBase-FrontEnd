@@ -4,7 +4,7 @@
     <mat-step [stepControl]="recipeNameFormGroup" errorMessage="Recipe name is required.">
       <form [formGroup]="recipeNameFormGroup">
         <ng-template matStepLabel>Enter recipe name</ng-template>
-        <mat-form-field>
+        <mat-form-field color="accent">
           <mat-label>Recipe name</mat-label>
           <input matInput placeholder="name" formControlName="nameCtrl" required>
         </mat-form-field>
@@ -16,7 +16,7 @@
         <ng-template matStepLabel>Enter recipe ingredients</ng-template>
         <div formArrayName="ingredients">
           <div *ngFor="let ingredient of ingredients; let i = index;" [formGroupName]="i">
-            <mat-form-field>
+            <mat-form-field color="accent">
               <mat-label>Ingredient</mat-label>
               <input formControlName="ingredient" matInput placeholder="1 cup water">
             </mat-form-field>
@@ -43,7 +43,7 @@
         <ng-template matStepLabel>Enter recipe instruction</ng-template>
         <div formArrayName="instructions">
           <div *ngFor="let instruction of instructions; let i = index;" [formGroupName]="i">
-            <mat-form-field>
+            <mat-form-field color="accent">
               <mat-label>Instruction</mat-label>
               <input formControlName="instruction" matInput placeholder="Mix flour and water...">
             </mat-form-field>
@@ -82,7 +82,7 @@
                    formControlName="imageCtrl">
           </mat-form-field>
           <br>
-          <mat-form-field *ngIf="imageToggleVal == 'upload'">
+          <mat-form-field *ngIf="imageToggleVal == 'upload'" color="accent">
             <input matInput [(ngModel)]="fileAttr" [ngModelOptions]="{standalone: true}" readonly name="name"/>
             <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile"
                    accept="image/*"/>
