@@ -5,16 +5,18 @@
       <input matInput [(ngModel)]="recipeName" value="{{recipeName}}">
     </mat-form-field>
   </div>
-  <div>
-    <mat-form-field *ngFor="let ingredient of recipe.recipeIngredients" color="accent">
+  <h2>Ingredients:</h2>
+  <div class="ingredients dynamic">
+    <mat-form-field *ngFor="let ingredient of ingredientsArray; let i = index; trackBy: customTrackBy" color="accent">
       <mat-label>Ingredients</mat-label>
-      <input matInput value="{{ingredient}}">
+      <input matInput [(ngModel)]="ingredientsArray[i]">
     </mat-form-field>
   </div>
-  <div>
-    <mat-form-field *ngFor="let instruction of recipe.recipeInstructions" color="accent">
+  <h2>Instructions:</h2>
+  <div class="instructions dynamic">
+    <mat-form-field *ngFor="let instruction of instructionsArray; let i = index; trackBy: customTrackBy" color="accent">
       <mat-label>Instructions</mat-label>
-      <input matInput value="{{instruction}}">
+      <input matInput [(ngModel)]="instructionsArray[i]">
     </mat-form-field>
   </div>
   <div class="image">
@@ -24,7 +26,7 @@
     </mat-button-toggle-group>
 
     <div>
-      <mat-form-field *ngIf="imageToggleVal == 'link'" color="accent" >
+      <mat-form-field *ngIf="imageToggleVal == 'link'" color="accent">
         <mat-label>URL to image</mat-label>
         <input (change)="showPreview($event)" matInput type="url"
                placeholder="https://www.gstatic.com/webp/gallery/1.webp"

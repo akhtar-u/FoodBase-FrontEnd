@@ -108,4 +108,8 @@ export class EditRecipeComponent implements OnInit {
   onVisibilityChanged(value: any): void {
     this.visibility = value === 'true';
   }
+
+  customTrackBy(index: number, obj: any): any {
+    return index;
+  }
 }
