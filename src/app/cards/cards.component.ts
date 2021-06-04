@@ -48,4 +48,8 @@ export class CardsComponent implements OnInit {
     return event;
   }
 
+  setSearching(): void {
+    this.searching = !this.searching;
+    this.searchText = '';
+  }
 }

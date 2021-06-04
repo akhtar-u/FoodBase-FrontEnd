@@ -13,7 +13,7 @@
 
   <div *ngIf="dataLoaded" class="cards-view">
   <mat-grid-list appGridCols rowHeight="400px" gutterSize="1rem">
-    <app-search-fab [searching]='searching' (click)="searching = !searching"></app-search-fab>
+    <app-search-fab [searching]='searching' (click)="setSearching()"></app-search-fab>
 
     <mat-grid-tile *ngFor="let recipe of (recipes | search: searchText | slice: lowValue : highValue)">
       <mat-card class="card">
