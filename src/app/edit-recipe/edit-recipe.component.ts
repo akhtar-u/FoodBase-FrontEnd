@@ -19,7 +19,7 @@ export class EditRecipeComponent implements OnInit {
   dataImage: any;
   imageToggleVal!: string;
   recipe!: Recipe;
-  visibility!: boolean;
+  visibility!: string;
   recipeName!: string;
   ingredientsArray: string[] = [];
   instructionsArray: string[] = [];
@@ -30,7 +30,7 @@ export class EditRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.visibility = this.recipe.recipePublic;
+    this.visibility = this.recipe.recipePublic.toString();
     this.dataImage = this.recipe.imageData;
     this.recipeName = this.recipe.recipeName;
     this.ingredientsArray = this.recipe.recipeIngredients;
@@ -83,12 +83,14 @@ export class EditRecipeComponent implements OnInit {
   }
 
   updateRecipe(): void {
+    this.checkArraysForEmptyString();
+
     const newRecipe: Recipe = {
       recipeID: this.recipe.recipeID,
       recipeName: this.recipeName,
       imageData: this.dataImage,
       username: this.recipe.username,
-      recipePublic: this.visibility,
+      recipePublic: this.visibility === 'true',
       recipeIngredients: this.ingredientsArray,
       recipeInstructions: this.instructionsArray
     };
@@ -105,11 +107,28 @@ export class EditRecipeComponent implements OnInit {
     //     (error) => error);
   }
 
-  onVisibilityChanged(value: any): void {
-    this.visibility = value === 'true';
-  }
-
   customTrackBy(index: number, obj: any): any {
     return index;
+  }
+
+  removeIngredient(i: any): void {
+    this.ingredientsArray.splice(i, 1);
+  }
+
+  removeInstruction(i: number): void {
+    this.instructionsArray.splice(i, 1);
+  }
+
+  addIngredient(): void {
+    this.ingredientsArray.push('');
+  }
+
+  addInstruction(): void {
+    this.instructionsArray.push('');
+  }
+
+  private checkArraysForEmptyString(): void {
+    this.ingredientsArray = this.ingredientsArray.filter(value => value);
+    this.instructionsArray = this.instructionsArray.filter(value => value);
   }
 }

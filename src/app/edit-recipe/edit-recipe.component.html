@@ -7,17 +7,45 @@
   </div>
   <h2>Ingredients:</h2>
   <div class="ingredients dynamic">
-    <mat-form-field *ngFor="let ingredient of ingredientsArray; let i = index; trackBy: customTrackBy" color="accent">
-      <mat-label>Ingredients</mat-label>
-      <input matInput [(ngModel)]="ingredientsArray[i]">
-    </mat-form-field>
+    <div *ngFor="let ingredient of ingredientsArray; let i = index; trackBy: customTrackBy">
+      <mat-form-field color="accent">
+        <mat-label>Ingredients</mat-label>
+        <input matInput [(ngModel)]="ingredientsArray[i]">
+      </mat-form-field>
+      <button (click)="removeIngredient(i)" mat-icon-button matTooltip="Remove ingredient">
+        <mat-icon>
+          remove
+        </mat-icon>
+      </button>
+    </div>
+    <div>
+      <button (click)="addIngredient()" mat-icon-button matTooltip="Add instruction">
+        <mat-icon>
+          add
+        </mat-icon>
+      </button>
+    </div>
   </div>
   <h2>Instructions:</h2>
   <div class="instructions dynamic">
-    <mat-form-field *ngFor="let instruction of instructionsArray; let i = index; trackBy: customTrackBy" color="accent">
-      <mat-label>Instructions</mat-label>
-      <input matInput [(ngModel)]="instructionsArray[i]">
-    </mat-form-field>
+    <div *ngFor="let instruction of instructionsArray; let i = index; trackBy: customTrackBy">
+      <mat-form-field color="accent">
+        <mat-label>Instructions</mat-label>
+        <input matInput [(ngModel)]="instructionsArray[i]">
+      </mat-form-field>
+      <button (click)="removeInstruction(i)" mat-icon-button matTooltip="Remove instruction">
+        <mat-icon>
+          remove
+        </mat-icon>
+      </button>
+    </div>
+    <div>
+      <button (click)="addInstruction()" mat-icon-button matTooltip="Add instruction">
+        <mat-icon>
+          add
+        </mat-icon>
+      </button>
+    </div>
   </div>
   <div class="image">
     <mat-button-toggle-group class="toggle-btns" (change)="onValChange($event.value)">
@@ -47,7 +75,7 @@
 
   <div>
     Make recipe public?
-    <mat-button-toggle-group (change)="onVisibilityChanged($event.value)">
+    <mat-button-toggle-group [(ngModel)]="visibility">
       <mat-button-toggle value="true">Yes</mat-button-toggle>
       <mat-button-toggle value="false">No</mat-button-toggle>
     </mat-button-toggle-group>
