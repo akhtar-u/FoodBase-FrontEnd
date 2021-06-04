@@ -17,21 +17,22 @@ export class RecipeService {
   private username = 'Mark';
 
   private httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': environment.API_URL})
   };
 
   constructor(private http: HttpClient) {
   }
 
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipesURL + '/public')
+    return this.http.get<Recipe[]>(this.recipesURL + '/public', this.httpOptions)
       .pipe(
         catchError(this.handleError<Recipe[]>('getRecipes', []))
       );
   }
 
   getRecipesByUsername(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + this.username)
+    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + this.username, this.httpOptions)
       .pipe(
         catchError(this.handleError<Recipe[]>('getRecipesByUsername', []))
       );

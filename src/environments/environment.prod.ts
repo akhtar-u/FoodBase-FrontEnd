@@ -1,4 +1,4 @@
 export const environment = {
-  API_URL: 'http://foodbase20-env.eba-82dxzbeq.us-east-2.elasticbeanstalk.com/',
+  API_URL: 'https://tranquil-depths-73332.herokuapp.com/database',
   production: true
 };
