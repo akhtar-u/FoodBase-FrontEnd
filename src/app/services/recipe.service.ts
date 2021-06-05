@@ -13,7 +13,7 @@ import {Login} from '../models/login';
 })
 export class RecipeService {
 
-  private recipesURL = environment.API_URL;
+  private recipesURL = 'https://tranquil-depths-73332.herokuapp.com/database';
   private username = 'Mark';
 
   private httpOptions = {

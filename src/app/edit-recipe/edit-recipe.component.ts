@@ -85,7 +85,7 @@ export class EditRecipeComponent implements OnInit {
   updateRecipe(): void {
     this.checkArraysForEmptyString();
 
-    const newRecipe: Recipe = {
+    const updatedRecipe: Recipe = {
       recipeID: this.recipe.recipeID,
       recipeName: this.recipeName,
       imageData: this.dataImage,
@@ -95,16 +95,13 @@ export class EditRecipeComponent implements OnInit {
       recipeInstructions: this.instructionsArray
     };
 
-    console.log(newRecipe);
-
-
     this.openSnackBar('Updating recipe...');
-    // this.recipeService.updateRecipe(updatedRecipe)
-    //   .subscribe(
-    //     (response) => {
-    //       this.router.navigate(['/dashboard']);
-    //     },
-    //     (error) => error);
+    this.recipeService.updateRecipe(updatedRecipe)
+      .subscribe(
+        (response) => {
+          this.router.navigate(['/dashboard']);
+        },
+        (error) => error);
   }
 
   customTrackBy(index: number, obj: any): any {

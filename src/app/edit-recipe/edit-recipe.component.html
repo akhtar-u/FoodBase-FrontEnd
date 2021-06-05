@@ -57,8 +57,7 @@
       <mat-form-field *ngIf="imageToggleVal == 'link'" color="accent">
         <mat-label>URL to image</mat-label>
         <input (change)="showPreview($event)" matInput type="url"
-               placeholder="https://www.gstatic.com/webp/gallery/1.webp"
-               formControlName="imageCtrl">
+               placeholder="https://www.gstatic.com/webp/gallery/1.webp">
       </mat-form-field>
       <mat-form-field *ngIf="imageToggleVal == 'upload'" color="accent">
         <input matInput [(ngModel)]="fileAttr" [ngModelOptions]="{standalone: true}" readonly name="name"/>
