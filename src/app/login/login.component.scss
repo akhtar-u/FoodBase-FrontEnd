@@ -1,37 +1,42 @@
-.login-form{
+.login-form {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
   font-size: 1rem;
 }
 
-.mat-display-2{
+.mat-display-2 {
   margin-bottom: 2rem !important;
 }
 
-::ng-deep.mat-tab-list,  ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-labels, ::ng-deep.mat-tab-label-active{
+::ng-deep.mat-tab-list, ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-labels, ::ng-deep.mat-tab-label-active {
   font-size: 1.5rem !important;
 }
 
-mat-tab-group{
+mat-tab-group {
   margin-top: 2rem;
 }
 
-.login-btns{
+.login-btns {
   display: flex;
   justify-content: space-between;
 }
 
-.register-btns{
+.register-btns {
   justify-content: center;
   margin-top: 1rem;
 }
 
-.login-btns > button{
+.login-btns > button {
   color: white !important;
   font-size: 1rem;
 }
 
-button{
+button {
   border-color: #b0bec5 !important;
+}
+
+.info {
+  font-size: 1rem;
+  text-align: center;
 }

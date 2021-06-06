@@ -31,6 +31,11 @@
 
 
     <mat-tab label="Register">
+      <div class="info">
+        <p>Username: alphanumeric and space characters.</p>
+        <p>Password: at least 8 characters.</p>
+      </div>
+
       <div class="login-form">
         <mat-form-field appearance="fill" color="accent">
           <mat-label>Enter username</mat-label>
@@ -52,7 +57,7 @@
 
         <mat-form-field appearance="fill" color="accent">
           <mat-label>Enter your password</mat-label>
-          <input matTooltip="Password should be atleast 8 characters in length" #passOne
+          <input #passOne
                  matInput [type]="hide ? 'password' : 'text'" minlength="8" [formControl]="password">
           <mat-error *ngIf="password.invalid">{{getPassErrorMessag()}}</mat-error>
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
@@ -73,7 +78,7 @@
         <div>
 
           <div class="login-btns register-btns">
-            <button mat-stroked-button (click)="register()"> Register </button>
+            <button mat-stroked-button (click)="register()"> Register</button>
           </div>
 
         </div>

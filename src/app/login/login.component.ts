@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('passTwo') passTwo!: ElementRef;
 
   private emailRegexPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
+  private userRegexPattern = '^[a-zA-Z0-9 ]*$';
   private horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   private verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
   public email: FormControl = new FormControl('', [Validators.required,
     Validators.pattern(this.emailRegexPattern)]);
   public password: FormControl = new FormControl('', Validators.required);
-  public username: FormControl = new FormControl('', Validators.required);
+  public username: FormControl = new FormControl('', [Validators.required,
+    Validators.pattern(this.userRegexPattern)]);
 
 
   constructor(private snackBar: MatSnackBar, private recipeService: RecipeService,
