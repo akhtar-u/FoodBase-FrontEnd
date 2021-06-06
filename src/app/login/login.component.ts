@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit {
       this.openSnackBar('Please enter a valid email to reset password');
     }
     else {
-      this.openSnackBar('Password sent to email if account exists.');
+      this.openSnackBar('This functionality is not available right now.');
     }
   }
 
