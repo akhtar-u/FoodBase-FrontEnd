@@ -79,7 +79,9 @@ export class LoginComponent implements OnInit {
         .subscribe(
           (response) => {
             this.router.navigate(['/dashboard']);
-            console.log(response);
+            const tokenString = response.split(' ');
+            localStorage.setItem('username', tokenString[0]);
+            localStorage.setItem('JWT', tokenString[1]);
           },
           (error) => {
             this.openSnackBar('Invalid email/password comination!');

@@ -25,5 +25,6 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.router.navigate(['/']);
+    localStorage.clear();
   }
 }

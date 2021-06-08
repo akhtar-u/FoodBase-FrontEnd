@@ -14,12 +14,12 @@ import {Login} from '../models/login';
 export class RecipeService {
 
   private recipesURL = 'https://foodbaseapi.herokuapp.com/database';
-  private username = 'Mark';
 
   private httpOptionsJSON = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': this.recipesURL
+      'Access-Control-Allow-Origin': this.recipesURL,
+      Authorization: 'Bearer ' + localStorage.getItem('JWT')
     })
   };
 
@@ -34,7 +34,7 @@ export class RecipeService {
   }
 
   getRecipesByUsername(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + this.username, this.httpOptionsJSON)
+    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + localStorage.getItem('username'), this.httpOptionsJSON)
       .pipe(
         catchError(this.handleError<Recipe[]>('getRecipesByUsername', []))
       );
