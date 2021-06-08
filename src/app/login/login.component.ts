@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('passTwo') passTwo!: ElementRef;
 
   private emailRegexPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
-  private userRegexPattern = '^[a-zA-Z0-9 ]*$';
+  private userRegexPattern = '^[a-zA-Z0-9]*$';
   private horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   private verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
