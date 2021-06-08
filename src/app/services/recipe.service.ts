@@ -34,40 +34,28 @@ export class RecipeService {
   }
 
   getRecipesByUsername(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + localStorage.getItem('username'), this.httpOptionsJSON)
-      .pipe(
-        catchError(this.handleError<Recipe[]>('getRecipesByUsername', []))
-      );
+    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + localStorage.getItem('username'),
+      this.httpOptionsJSON);
   }
 
   addRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.post<Recipe>(this.recipesURL + '/add', recipe, this.httpOptionsJSON).pipe(
-      catchError(this.handleError<Recipe>('addRecipe'))
-    );
+    return this.http.post<Recipe>(this.recipesURL + '/add', recipe, this.httpOptionsJSON);
   }
 
   updateRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.put<Recipe>(this.recipesURL + '/update', recipe, this.httpOptionsJSON).pipe(
-      catchError(this.handleError<Recipe>('updateRecipe'))
-    );
+    return this.http.put<Recipe>(this.recipesURL + '/update', recipe, this.httpOptionsJSON);
   }
 
   register(register: Register): Observable<Register> {
-    return this.http.post<Register>(this.recipesURL + '/registration', register, this.httpOptionsJSON).pipe(
-      catchError(this.handleError<Register>('register'))
-    );
+    return this.http.post<Register>(this.recipesURL + '/registration', register, this.httpOptionsJSON);
   }
 
   login(login: Login): Observable<any> {
-    return this.http.post(this.recipesURL + '/login', login, {responseType: 'text'}).pipe(
-      catchError(this.handleError<any>('login'))
-    );
+    return this.http.post(this.recipesURL + '/login', login, {responseType: 'text'});
   }
 
   deleteRecipe(recipeID: string): Observable<Recipe> {
-    return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID, this.httpOptionsJSON).pipe(
-      catchError(this.handleError<Recipe>('deleteRecipe'))
-    );
+    return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID, this.httpOptionsJSON);
   }
 
   private handleError<T>(operation = 'operation', result?: T): (error: any) => Observable<T> {

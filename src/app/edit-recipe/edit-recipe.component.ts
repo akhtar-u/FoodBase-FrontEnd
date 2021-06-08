@@ -102,6 +102,7 @@ export class EditRecipeComponent implements OnInit {
           this.router.navigate(['/dashboard']);
         },
         (error) => {
+          localStorage.clear();
           this.openSnackBar('You are not authorized! Please sign in.');
           this.router.navigate(['/login']);
         });

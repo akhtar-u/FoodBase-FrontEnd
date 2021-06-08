@@ -6,7 +6,10 @@
     </mat-paginator>
   </div>
   <div *ngIf="dataLoaded" class="search">
-    <mat-form-field color="accent">
+    <p>
+      Welcome, {{username}}!
+    </p>
+    <mat-form-field color="accent" floatLabel="never">
       <input [(ngModel)]="searchText" type="text" matInput  placeholder="Search">
     </mat-form-field>
   </div>

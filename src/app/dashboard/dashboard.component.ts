@@ -19,12 +19,14 @@ export class DashboardComponent implements OnInit {
   searchText = '';
   private horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   private verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  username!: string | null;
 
   constructor(private recipeService: RecipeService, private router: Router, private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
     this.getRecipesByUsername();
+    this.username = localStorage.getItem('username');
   }
 
   private getRecipesByUsername(): void {
@@ -34,6 +36,7 @@ export class DashboardComponent implements OnInit {
           this.dataLoaded = true;
         },
         (error => {
+          localStorage.clear();
           this.openSnackBar('You are not authorized! Please sign in.');
           this.router.navigate(['/login']);
         }));
@@ -45,6 +48,7 @@ export class DashboardComponent implements OnInit {
       (response) => {
       },
       (error) => {
+        localStorage.clear();
         this.openSnackBar('You are not authorized! Please sign in.');
         this.router.navigate(['/login']);
       });

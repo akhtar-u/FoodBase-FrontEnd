@@ -6,7 +6,7 @@
     </mat-paginator>
   </div>
   <div class="search" *ngIf="searching">
-    <mat-form-field color="accent">
+    <mat-form-field color="accent" floatLabel="never">
       <input [(ngModel)]="searchText" type="text" matInput  placeholder="Search">
     </mat-form-field>
   </div>
