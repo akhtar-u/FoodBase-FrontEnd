@@ -101,7 +101,10 @@ export class EditRecipeComponent implements OnInit {
         (response) => {
           this.router.navigate(['/dashboard']);
         },
-        (error) => error);
+        (error) => {
+          this.openSnackBar('You are not authorized! Please sign in.');
+          this.router.navigate(['/login']);
+        });
   }
 
   customTrackBy(index: number, obj: any): any {

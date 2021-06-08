@@ -12,7 +12,7 @@
       <mat-icon>login</mat-icon>
     </button>
   </a>
-  <button *ngIf="loginRoute" mat-icon-button matTooltip="Sign Out">
+  <button *ngIf="loginRoute" mat-icon-button matTooltip="Sign Out" (click)="logout()">
     <mat-icon>logout</mat-icon>
   </button>
 

@@ -79,6 +79,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
           (response) => {
             this.router.navigate(['/dashboard']);
+            console.log(response);
           },
           (error) => {
             this.openSnackBar('Invalid email/password comination!');

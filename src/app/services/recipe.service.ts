@@ -16,55 +16,56 @@ export class RecipeService {
   private recipesURL = 'https://foodbaseapi.herokuapp.com/database';
   private username = 'Mark';
 
-  private httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': this.recipesURL})
+  private httpOptionsJSON = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': this.recipesURL
+    })
   };
 
   constructor(private http: HttpClient) {
   }
 
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipesURL + '/public', this.httpOptions)
+    return this.http.get<Recipe[]>(this.recipesURL + '/public', this.httpOptionsJSON)
       .pipe(
         catchError(this.handleError<Recipe[]>('getRecipes', []))
       );
   }
 
   getRecipesByUsername(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + this.username, this.httpOptions)
+    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + this.username, this.httpOptionsJSON)
       .pipe(
         catchError(this.handleError<Recipe[]>('getRecipesByUsername', []))
       );
   }
 
   addRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.post<Recipe>(this.recipesURL + '/add', recipe, this.httpOptions).pipe(
+    return this.http.post<Recipe>(this.recipesURL + '/add', recipe, this.httpOptionsJSON).pipe(
       catchError(this.handleError<Recipe>('addRecipe'))
     );
   }
 
   updateRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.put<Recipe>(this.recipesURL + '/update', recipe, this.httpOptions).pipe(
+    return this.http.put<Recipe>(this.recipesURL + '/update', recipe, this.httpOptionsJSON).pipe(
       catchError(this.handleError<Recipe>('updateRecipe'))
     );
   }
 
-
   register(register: Register): Observable<Register> {
-    return this.http.post<Register>(this.recipesURL + '/register', register, this.httpOptions).pipe(
+    return this.http.post<Register>(this.recipesURL + '/registration', register, this.httpOptionsJSON).pipe(
       catchError(this.handleError<Register>('register'))
     );
   }
 
-  login(login: Login): Observable<Login> {
-    return this.http.post<Login>(this.recipesURL + '/login', login, this.httpOptions).pipe(
-      catchError(this.handleError<Login>('login'))
+  login(login: Login): Observable<any> {
+    return this.http.post(this.recipesURL + '/login', login, {responseType: 'text'}).pipe(
+      catchError(this.handleError<any>('login'))
     );
   }
 
   deleteRecipe(recipeID: string): Observable<Recipe> {
-    return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID, this.httpOptions).pipe(
+    return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID, this.httpOptionsJSON).pipe(
       catchError(this.handleError<Recipe>('deleteRecipe'))
     );
   }
