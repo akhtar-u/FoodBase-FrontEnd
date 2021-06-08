@@ -3,9 +3,9 @@
     <mat-tab label="Sign In">
       <div class="login-form">
         <mat-form-field appearance="fill" color="accent">
-          <mat-label>Enter your email</mat-label>
-          <input matInput placeholder="pat@example.com" [formControl]="email">
-          <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+          <mat-label>Enter your username</mat-label>
+          <input matInput placeholder="johndoe123" [formControl]="username">
+          <mat-error *ngIf="username.invalid">{{getUserErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" color="accent">
@@ -40,7 +40,7 @@
         <mat-form-field appearance="fill" color="accent">
           <mat-label>Enter username</mat-label>
           <input type="text" matInput placeholder="username" [formControl]="username">
-          <mat-error></mat-error>
+          <mat-error *ngIf="username.invalid">{{getUserErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" color="accent">

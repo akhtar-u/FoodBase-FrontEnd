@@ -47,6 +47,14 @@ export class LoginComponent implements OnInit {
     return this.email.errors ? 'Not a valid email' : '';
   }
 
+  getUserErrorMessage(): string {
+    if (this.username.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.email.errors ? 'Not a valid username' : '';
+  }
+
   getPassErrorMessag(): string {
     if (this.password.hasError('required')) {
       return 'You must enter a value';
@@ -56,22 +64,25 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(): void {
-    if (this.password.invalid || this.email.invalid) {
-      this.openSnackBar('You must enter both a valid email and password!');
+    if (this.password.invalid || this.username.invalid) {
+      this.openSnackBar('You must enter both a valid username and password!');
     }
     else {
       this.openSnackBar('Signing in ...');
 
       const login: Login = {
-        email: this.email.value,
+        username: this.username.value,
         password: this.password.value
       };
 
       this.recipeService.login(login)
         .subscribe(
           (response) => {
+            this.router.navigate(['/dashboard']);
           },
-          (error) => error);
+          (error) => {
+            this.openSnackBar('Invalid email/password comination!');
+          });
     }
   }
 
@@ -86,8 +97,8 @@ export class LoginComponent implements OnInit {
   }
 
   resetPassword(): void {
-    if (this.email.invalid) {
-      this.openSnackBar('Please enter a valid email to reset password');
+    if (this.username.invalid) {
+      this.openSnackBar('Please enter a valid username to reset password');
     }
     else {
       this.openSnackBar('This functionality is not available right now.');
@@ -121,8 +132,12 @@ export class LoginComponent implements OnInit {
       this.recipeService.register(register)
         .subscribe(
           (response) => {
+            this.openSnackBar('Registration successful. Please sign in.');
+            this.router.navigate(['/login']);
           },
-          (error) => error);
+          (error) => {
+            this.openSnackBar('Email or username already taken!');
+          });
     }
   }
 }
