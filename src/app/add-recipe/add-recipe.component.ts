@@ -22,7 +22,6 @@ export class AddRecipeComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
   fileAttr = '';
   dataImage: any;
-  username = 'Mark';
 
   recipeNameFormGroup!: FormGroup;
   ingredientsFormGroup!: FormGroup;
@@ -128,7 +127,7 @@ export class AddRecipeComponent implements OnInit {
         recipeID: '',
         recipeName: this.recipeNameFormGroup.get('nameCtrl')?.value,
         imageData: this.dataImage,
-        username: this.username,
+        username: this.recipeService.getUsername(),
         recipePublic: this.visibilityFormGroup.get('visibilityCtrl')?.value.toString() === 'true',
         recipeIngredients: this.ingredientsArray,
         recipeInstructions: this.instructionsArray
