@@ -78,8 +78,8 @@ export class LoginComponent implements OnInit {
       this.recipeService.login(login)
         .subscribe((response) => {
             const tokenString = response.split(' ');
-            localStorage.setItem('username', tokenString[0]);
-            localStorage.setItem('JWT', tokenString[1]);
+            this.recipeService.setItem('username', tokenString[0]);
+            this.recipeService.setItem('JWT', tokenString[1]);
             this.router.navigate(['/dashboard']);
           },
           (error) => {

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {Recipe} from '../models/recipe';
 import {Register} from '../models/register';
 import {Login} from '../models/login';
@@ -14,6 +14,7 @@ import {environment} from '../../environments/environment';
 export class RecipeService {
 
   private recipesURL = environment.API_URL;
+  private storageSub = new Subject<string>();
 
   constructor(private http: HttpClient) {
   }
@@ -49,19 +50,23 @@ export class RecipeService {
     return this.http.post(this.recipesURL + '/login', login, {responseType: 'text'});
   }
 
-  async isAuthorized(): Promise<boolean> {
-    try {
-      const response = await this.http.get(this.recipesURL + '/authorization').toPromise();
-      return true;
-    } catch (error) {
-      console.log('service false');
-      return false;
-    }
-  }
-
   private handleError<T>(operation = 'operation', result?: T): (error: any) => Observable<T> {
     return (error: any): Observable<T> => {
       return of(result as T);
     };
+  }
+
+  watchStorage(): Observable<any> {
+    return this.storageSub.asObservable();
+  }
+
+  setItem(key: string, data: any): void {
+    localStorage.setItem(key, data);
+    this.storageSub.next('login');
+  }
+
+  clear(): void {
+    localStorage.clear();
+    this.storageSub.next('logout');
   }
 }

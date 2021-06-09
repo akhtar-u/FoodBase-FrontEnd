@@ -7,13 +7,17 @@
       <mat-icon>apps</mat-icon>
     </button>
   </a>
+  <a routerLink="/dashboard">
+    <button *ngIf="!dashboardRoute && loggedIn" mat-icon-button matTooltip="Dashboard">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </a>
   <a routerLink="/login">
-    <button *ngIf="!loginRoute" mat-icon-button matTooltip="Sign In">
+    <button *ngIf="!loginRoute && !loggedIn" mat-icon-button matTooltip="Sign In">
       <mat-icon>login</mat-icon>
     </button>
   </a>
-  <button *ngIf="loginRoute" mat-icon-button matTooltip="Sign Out" (click)="logout()">
+  <button *ngIf="loggedIn" mat-icon-button matTooltip="Sign Out" (click)="logout()">
     <mat-icon>logout</mat-icon>
   </button>
-
 </mat-toolbar>

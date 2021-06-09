@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
           this.dataLoaded = true;
         },
         (error => {
-          localStorage.clear();
+          this.recipeService.clear();
           this.openSnackBar('You are not authorized! Please sign in.');
           this.router.navigate(['/login']);
         }));
@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit {
       (response) => {
       },
       (error) => {
-        localStorage.clear();
+        this.recipeService.clear();
         this.openSnackBar('You are not authorized! Please sign in.');
         this.router.navigate(['/login']);
       });
