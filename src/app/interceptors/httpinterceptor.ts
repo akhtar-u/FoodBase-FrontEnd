@@ -11,6 +11,7 @@ export class HTTPInterceptor implements HttpInterceptor {
     else {
       const jwtRequest = req.clone({
         headers: req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('JWT'))
+          .set('access-control-allow-origin', 'https://www.foodbase.ca')
       });
       return next.handle(jwtRequest);
     }
