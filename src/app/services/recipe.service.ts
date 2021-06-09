@@ -69,4 +69,12 @@ export class RecipeService {
     localStorage.clear();
     this.storageSub.next('logout');
   }
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('JWT');
+  }
 }
