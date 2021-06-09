@@ -15,7 +15,6 @@ export class RecipeService {
 
   private recipesURL = environment.API_URL;
   private storageSub = new Subject<string>();
-  private username = '';
 
   constructor(private http: HttpClient) {
   }
@@ -77,13 +76,5 @@ export class RecipeService {
 
   getToken(): string | null {
     return localStorage.getItem('JWT');
-  }
-
-  setUsername(username: string): void {
-    this.username = username;
-  }
-
-  getUsername(): string {
-    return this.username;
   }
 }

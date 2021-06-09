@@ -22,6 +22,7 @@ export class AddRecipeComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
   fileAttr = '';
   dataImage: any;
+  username: any;
 
   recipeNameFormGroup!: FormGroup;
   ingredientsFormGroup!: FormGroup;
@@ -38,6 +39,14 @@ export class AddRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('username') !== null) {
+      this.username = localStorage.getItem('username');
+    }
+    else {
+      this.username = '';
+    }
+
+
     this.recipeNameFormGroup = this.formBuilder.group({
       nameCtrl: ['', Validators.required]
     });
@@ -127,7 +136,7 @@ export class AddRecipeComponent implements OnInit {
         recipeID: '',
         recipeName: this.recipeNameFormGroup.get('nameCtrl')?.value,
         imageData: this.dataImage,
-        username: this.recipeService.getUsername(),
+        username: this.username,
         recipePublic: this.visibilityFormGroup.get('visibilityCtrl')?.value.toString() === 'true',
         recipeIngredients: this.ingredientsArray,
         recipeInstructions: this.instructionsArray

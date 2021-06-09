@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getRecipesByUsername();
     this.username = localStorage.getItem('username');
-    this.recipeService.setUsername(this.recipes[0].username);
+    // this.recipeService.setUsername(this.recipes[0].username);
   }
 
   private getRecipesByUsername(): void {
