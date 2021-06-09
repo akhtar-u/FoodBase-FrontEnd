@@ -135,7 +135,6 @@ export class LoginComponent implements OnInit {
         .subscribe(
           (response) => {
             this.openSnackBar('Registration successful. Please sign in.');
-            this.router.navigate(['/login']);
           },
           (error) => {
             this.openSnackBar('Email or username already taken!');

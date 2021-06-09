@@ -27,6 +27,10 @@ export class EditRecipeComponent implements OnInit {
   constructor(private snackBar: MatSnackBar, private router: Router,
               private recipeService: RecipeService) {
     this.recipe = this.router.getCurrentNavigation()?.extras.state?.recipe;
+    if (this.recipe === undefined) {
+      this.openSnackBar('You must select recipe from dashboard to edit!');
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   ngOnInit(): void {

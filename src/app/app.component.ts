@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {environment} from '../environments/environment';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,4 @@ import {environment} from '../environments/environment';
 })
 export class AppComponent {
   title = 'foodbase-app';
-  apiURL = environment.API_URL;
 }

@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class HTTPInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url.includes('/login') || req.url.includes('/public')) {
+    if (req.url.includes('/login') || req.url.includes('/public') || req.url.includes('/registration')) {
       return next.handle(req);
     }
     else {

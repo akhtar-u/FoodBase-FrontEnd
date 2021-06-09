@@ -106,7 +106,8 @@ export class AddRecipeComponent implements OnInit {
 
       // Reset if duplicate image uploaded again
       this.fileInput.nativeElement.value = '';
-    } else {
+    }
+    else {
       this.fileAttr = '';
     }
   }
@@ -121,7 +122,8 @@ export class AddRecipeComponent implements OnInit {
     if (this.recipeNameFormGroup.invalid || this.ingredientsArray.length === 0 || this.instructionsArray.length === 0
       || this.dataImage == null || this.visibilityFormGroup.invalid) {
       this.openSnackBar('Please complete the form correctly!');
-    } else {
+    }
+    else {
       const newRecipe: Recipe = {
         recipeID: '',
         recipeName: this.recipeNameFormGroup.get('nameCtrl')?.value,

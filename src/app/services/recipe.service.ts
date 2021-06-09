@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {Recipe} from '../models/recipe';
 import {Register} from '../models/register';
 import {Login} from '../models/login';
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import {Login} from '../models/login';
 })
 export class RecipeService {
 
-  private recipesURL = 'https://foodbaseapi.herokuapp.com/database';
+  private recipesURL = environment.API_URL;
 
   constructor(private http: HttpClient) {
   }
@@ -36,6 +37,10 @@ export class RecipeService {
     return this.http.put<Recipe>(this.recipesURL + '/update', recipe);
   }
 
+  deleteRecipe(recipeID: string): Observable<Recipe> {
+    return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID);
+  }
+
   register(register: Register): Observable<Register> {
     return this.http.post<Register>(this.recipesURL + '/registration', register);
   }
@@ -44,10 +49,15 @@ export class RecipeService {
     return this.http.post(this.recipesURL + '/login', login, {responseType: 'text'});
   }
 
-  deleteRecipe(recipeID: string): Observable<Recipe> {
-    return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID);
+  async isAuthorized(): Promise<boolean> {
+    try {
+      const response = await this.http.get(this.recipesURL + '/authorization').toPromise();
+      return true;
+    } catch (error) {
+      console.log('service false');
+      return false;
+    }
   }
-
 
   private handleError<T>(operation = 'operation', result?: T): (error: any) => Observable<T> {
     return (error: any): Observable<T> => {
