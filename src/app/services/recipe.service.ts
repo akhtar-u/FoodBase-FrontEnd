@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {Recipe} from '../models/recipe';
-import {environment} from '../../environments/environment';
 import {Register} from '../models/register';
 import {Login} from '../models/login';
 
@@ -15,39 +14,30 @@ export class RecipeService {
 
   private recipesURL = 'https://foodbaseapi.herokuapp.com/database';
 
-  private httpOptionsJSON = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': this.recipesURL,
-      Authorization: 'Bearer ' + localStorage.getItem('JWT')
-    })
-  };
-
   constructor(private http: HttpClient) {
   }
 
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipesURL + '/public', this.httpOptionsJSON)
+    return this.http.get<Recipe[]>(this.recipesURL + '/public')
       .pipe(
         catchError(this.handleError<Recipe[]>('getRecipes', []))
       );
   }
 
   getRecipesByUsername(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + localStorage.getItem('username'),
-      this.httpOptionsJSON);
+    return this.http.get<Recipe[]>(this.recipesURL + '/get/' + localStorage.getItem('username'));
   }
 
   addRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.post<Recipe>(this.recipesURL + '/add', recipe, this.httpOptionsJSON);
+    return this.http.post<Recipe>(this.recipesURL + '/add', recipe);
   }
 
   updateRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.put<Recipe>(this.recipesURL + '/update', recipe, this.httpOptionsJSON);
+    return this.http.put<Recipe>(this.recipesURL + '/update', recipe);
   }
 
   register(register: Register): Observable<Register> {
-    return this.http.post<Register>(this.recipesURL + '/registration', register, this.httpOptionsJSON);
+    return this.http.post<Register>(this.recipesURL + '/registration', register);
   }
 
   login(login: Login): Observable<any> {
@@ -55,8 +45,9 @@ export class RecipeService {
   }
 
   deleteRecipe(recipeID: string): Observable<Recipe> {
-    return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID, this.httpOptionsJSON);
+    return this.http.delete<Recipe>(this.recipesURL + '/delete/' + recipeID);
   }
+
 
   private handleError<T>(operation = 'operation', result?: T): (error: any) => Observable<T> {
     return (error: any): Observable<T> => {

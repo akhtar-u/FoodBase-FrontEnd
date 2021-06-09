@@ -17,8 +17,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AddRecipeComponent} from './add-recipe/add-recipe.component';
 import {DbRecipeRowComponent} from './db-recipe-row/db-recipe-row.component';
 import {EditRecipeComponent} from './edit-recipe/edit-recipe.component';
-import {HttpClientModule} from '@angular/common/http';
-import { SearchPipe } from './pipes/search.pipe';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {SearchPipe} from './pipes/search.pipe';
+import {HTTPInterceptor} from './interceptors/httpinterceptor';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { SearchPipe } from './pipes/search.pipe';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

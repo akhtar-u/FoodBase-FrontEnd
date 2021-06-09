@@ -76,8 +76,7 @@ export class LoginComponent implements OnInit {
       };
 
       this.recipeService.login(login)
-        .subscribe(
-          (response) => {
+        .subscribe((response) => {
             const tokenString = response.split(' ');
             localStorage.setItem('username', tokenString[0]);
             localStorage.setItem('JWT', tokenString[1]);
