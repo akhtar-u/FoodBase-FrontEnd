@@ -15,7 +15,7 @@ export class CardsComponent implements OnInit {
   recipes: Recipe[] = [];
   dataLoaded!: boolean;
   lowValue = 0;
-  highValue = 20;
+  highValue = 10;
   searchText = '';
   searching = false;
 

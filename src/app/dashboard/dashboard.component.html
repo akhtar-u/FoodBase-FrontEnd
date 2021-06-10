@@ -1,6 +1,6 @@
 <div class="db-div">
   <div>
-    <mat-paginator *ngIf="dataLoaded" color="accent" [length]="recipes.length" pageSize=10
+    <mat-paginator *ngIf="dataLoaded" color="accent" [length]="recipes.length" [pageSize]=10
                    (page)="getPaginatorData($event)" [pageSizeOptions]="[1, 10, 20]"
                    showFirstLastButtons="false">
     </mat-paginator>
