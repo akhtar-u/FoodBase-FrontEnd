@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {ViewRecipeComponent} from '../view-recipe/view-recipe.component';
 import {Recipe} from '../models/recipe';
@@ -11,6 +11,8 @@ import {PageEvent} from '@angular/material/paginator';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
+
+  @ViewChild('scrollDiv') div!: ElementRef;
 
   recipes: Recipe[] = [];
   dataLoaded!: boolean;
@@ -49,6 +51,9 @@ export class CardsComponent implements OnInit {
   }
 
   setSearching(): void {
+    if (!this.searching) {
+      this.div.nativeElement.scrollTop = 0;
+    }
     this.searching = !this.searching;
     this.searchText = '';
   }

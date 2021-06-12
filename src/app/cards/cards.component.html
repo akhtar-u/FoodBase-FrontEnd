@@ -1,4 +1,4 @@
-<div class="main-content">
+<div #scrollDiv class="main-content">
   <div *ngIf="dataLoaded">
     <mat-paginator color="accent" [length]="recipes.length" [pageSize]=10
                    (page)="getPaginatorData($event)" [pageSizeOptions]="[1, 10, 20]"
